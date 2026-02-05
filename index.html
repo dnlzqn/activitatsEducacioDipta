@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mapa d'activitats Educació DIPTA</title>
+
+  <!-- Estils de Leaflet -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css">
+
+  <!-- Estils propis -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <main>
+    <!-- Contenidor del mapa -->
+    <div id="map" role="region" aria-label="Mapa d'activitats educatives"></div>
+
+    <!-- Botó per obrir el panell -->
+    <button 
+      id="togglePanel" 
+      class="panel-button"
+      aria-controls="centerPanel"
+      aria-expanded="false">
+      Centres
+    </button>
+
+    <!-- Panell de filtres -->
+    <aside id="centerPanel" class="panel" aria-label="Filtres de centres">
+      <h3>Selecciona centres</h3>
+
+      <label><input type="checkbox" value="EAD Tarragona" checked> EAD Tarragona</label>
+      <label><input type="checkbox" value="EAD Reus" checked> EAD Reus</label>
+      <label><input type="checkbox" value="ECM Tarragona" checked> ECM Tarragona</label>
+      <label><input type="checkbox" value="ECM Tortosa" checked> ECM Tortosa</label>
+      <label><input type="checkbox" value="ECM Reus" checked> ECM Reus</label>
+      <label><input type="checkbox" value="CEE Sant Rafael" checked> CEE Sant Rafael</label>
+      <label><input type="checkbox" value="CEE Alba" checked> CEE Alba</label>
+      <label><input type="checkbox" value="CEE Sant Jordi" checked> CEE Sant Jordi</label>
+
+      <hr>
+
+      <label>
+        <input type="checkbox" id="heatToggle">
+        Mapa de calor
+      </label>
+    </aside>
+  </main>
+
+  <!-- Scripts  -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
+  <script src="https://unpkg.com/leaflet.heat/dist/leaflet-heat.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
