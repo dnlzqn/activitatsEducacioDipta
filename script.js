@@ -108,7 +108,7 @@ const activities = [
 
   { title: "Exposició Antiga Audiència", place: "Tarragona", date: "abril 2025", center: "EAD Tarragona", lat: 41.1189, lng: 1.2445 },
   { title: "Mural Institut Martí Franquès", place: "Tarragona", date: "abril 2025", center: "EAD Tarragona", lat: 41.1189, lng: 1.2445 },
-  { title: "Exposició fotogràfica", place: "Teatre de Tarragona", date: "3 abril 2025", center: "EAD Tarragona", lat: 41.1189, lng: 1.2445 },
+  { title: "Exposició fotogràfica", place: "Teatre de Tarragona", date: "3 abril 2025", center: "EAD Tarragona", lat: 41.1143339894775, lng: 1.2557391822338104 },
   { title: "Exposició a Renau", place: "Renau", date: "abril 2025", center: "EAD Tarragona", lat: 41.2245, lng: 1.3112 },
   { title: "Visita Folch + Vasava", place: "Barcelona", date: "22 abril 2025", center: "EAD Tarragona", lat: 41.3874, lng: 2.1686 },
 
@@ -124,7 +124,32 @@ const activities = [
   { title: "Taller modelatge 3D amb Rubén Borràs", place: "EAD Reus", date: "26-28 març 2025", center: "EAD Reus", lat: 41.1536585771981, lng: 1.1068122088909151 },
   { title: "Taller modelatge 3D amb Rubén Borràs", place: "EAD Reus", date: "2 abril 2025", center: "EAD Reus", lat: 41.1536585771981, lng: 1.1068122088909151 },
   { title: "Xerrada AMOO Studio", place: "EAD Reus", date: "23 gener 2025", center: "EAD Reus", lat: 41.1536585771981, lng: 1.1068122088909151 },
-  { title: "Conferència COAC Tarragona", place: "Tarragona", date: "23 gener 2025", center: "EAD Reus", lat: 41.1189, lng: 1.2445 }
+  { title: "Conferència COAC Tarragona", place: "Tarragona", date: "23 gener 2025", center: "EAD Reus", lat: 41.1189, lng: 1.2445 },
+  
+  // ECM Tarragona
+  // --- ECM TARRAGONA ---
+  
+  //41.11781265862017, 1.2556017190217974 conservatori
+  //41.11808140668262, 1.2451156228780749 auditori
+  //41.1143339894775, 1.2557391822338104 teatre tarragona
+
+{ title: "Concert inaugural del curs", place: "Auditori Diputació", date: "setembre 2024", center: "ECM Tarragona", lat: 41.1189, lng: 1.2445 }, 
+{ title: "Audicions vent fusta i cant", place: "Conservatori Tarragona", date: "desembre 2024", center: "ECM Tarragona", lat: 41.11781265862017, lng: 1.2556017190217974 }, 
+{ title: "Concert de Nadal conjunts guitarres", place: "Auditori Diputació", date: "desembre 2024", center: "ECM Tarragona", lat: 41.11808140668262, lng: 1.2451156228780749 },
+{ title: "Concert Banda Nivell Elemental", place: "Auditori Diputació", date: "desembre 2024", center: "ECM Tarragona", lat: 41.11808140668262, lng: 1.2451156228780749 },
+{ title: "Concurs Xavier Gols – audicions", place: "Sala Xavier Gols", date: "març 2025", center: "ECM Tarragona", lat: 41.11781265862017, lng: 1.2556017190217974 }, 
+{ title: "Jornada de portes obertes", place: "Conservatori Tarragona", date: "març 2025", center: "ECM Tarragona", lat: 41.11781265862017, lng: 1.2556017190217974 },
+{ title: "Concert Dia de la Dona", place: "Sala Xavier Gols", date: "març 2025", center: "ECM Tarragona", lat: 41.11781265862017, lng: 1.2556017190217974 },
+{ title: "Jornada de les Arts", place: "Auditori Diputació", date: "abril 2025", center: "ECM Tarragona", lat: 41.11808140668262, lng: 1.2451156228780749 }, 
+{ title: "Cantata 'Amics de pedra'", place: "Teatre Tarragona", date: "abril 2025", center: "ECM Tarragona", lat: 41.1143339894775, lng: 1.2557391822338104 },
+{ title: "Concert de solistes amb orquestra", place: "Auditori Diputació", date: "abril 2025", center: "ECM Tarragona", lat: 41.11808140668262, lng: 1.2451156228780749 },
+{ title: "Audició aula Suzuki", place: "Sala Noble", date: "maig 2025", center: "ECM Tarragona", lat: 41.11781265862017, lng: 1.2556017190217974 }, 
+{ title: "Proves d'accés al Grau Professional", place: "Conservatori Tarragona", date: "maig 2025", center: "ECM Tarragona", lat: 41.11781265862017, lng: 1.2556017190217974 },
+{ title: "Concert conjunt pianos", place: "Sala Xavier Gols", date: "maig 2025", center: "ECM Tarragona", lat: 41.11781265862017, lng: 1.2556017190217974 },
+{ title: "Concert alumnat iniciació", place: "Auditori Diputació", date: "juny 2025", center: "ECM Tarragona", lat: 41.11808140668262, lng: 1.2451156228780749 }, 
+{ title: "Acte de graduació M6 i GP6", place: "Auditori Diputació", date: "juny 2025", center: "ECM Tarragona", lat: 41.11808140668262, lng: 1.2451156228780749 },
+{ title: "Concert intercanvi bandes Reus–Tarragona", place: "Auditori Diputació", date: "juny 2025", center: "ECM Tarragona", lat: 41.11808140668262, lng: 1.2451156228780749 }
+
 ];
 
 // ===============================
