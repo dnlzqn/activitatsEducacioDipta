@@ -127,9 +127,34 @@ const activities = [
   { title: "Conferència COAC Tarragona", place: "Tarragona", date: "23 gener 2025", center: "EAD Reus", lat: 41.1189, lng: 1.2445 }
 ];
 
+// ===============================
+// 5. COMPTADOR D’ACTIVITATS PER CENTRE
+// ===============================
+
+function updateCenterCounts() {
+
+  const counts = {};
+
+  activities.forEach(act => {
+    counts[act.center] = (counts[act.center] || 0) + 1;
+  });
+
+  const items = document.querySelectorAll(".center-item");
+
+  items.forEach(item => {
+    const checkbox = item.querySelector("input[type=checkbox]");
+    const center = checkbox.value;
+    const countEl = item.querySelector(".center-count");
+
+    if (countEl) {
+      countEl.textContent = `(${counts[center] || 0})`;
+    }
+  });
+}
+
 
 // =====================================================
-// 5. HEATMAP
+// 6. HEATMAP
 // =====================================================
 
 const heatPoints = activities.map(act => [
@@ -146,7 +171,7 @@ const heatLayer = L.heatLayer(heatPoints, {
 
 
 // =====================================================
-// 6. FUNCIÓ D’ICONA DE MARCADOR
+// 7. FUNCIÓ D’ICONA DE MARCADOR
 // =====================================================
 
 function getMarkerIcon(color) {
@@ -160,7 +185,7 @@ function getMarkerIcon(color) {
 
 
 // =====================================================
-// 7. CREACIÓ DELS MARCADORS
+// 8. CREACIÓ DELS MARCADORS
 // =====================================================
 
 const allMarkers = [];
@@ -193,7 +218,7 @@ map.addLayer(markers);
 
 
 // =====================================================
-// 8. UI: PANELL I FILTRES
+// 9. UI: PANELL I FILTRES
 // =====================================================
 
 const panel = document.getElementById("centerPanel");
@@ -214,7 +239,7 @@ checkboxes.forEach(cb => {
 
 
 // =====================================================
-// 9. FILTRE PER CENTRES
+// 10. FILTRE PER CENTRES
 // =====================================================
 
 function updateFilters() {
@@ -237,7 +262,7 @@ function updateFilters() {
 
 
 // =====================================================
-// 10. TOGGLE MAPA DE CALOR
+// 11. TOGGLE MAPA DE CALOR
 // =====================================================
 
 heatToggle.checked = false;
@@ -254,3 +279,5 @@ heatToggle.addEventListener("change", () => {
     updateFilters();
   }
 });
+
+updateCenterCounts();
