@@ -4,11 +4,16 @@
 
 // Colors per centre
 const centerColors = {
-  "EAD Tarragona": "orange",
-  "EAD Reus": "#457b9d",
-  "EAD Tortosa": "#2a9d8f",
-  "Conservatori": "#f4a261"
+  "EAD Tarragona": "#e63946",   // vermell intens
+  "EAD Reus": "#1d3557",        // blau fosc
+  "ECM Tarragona": "#2a9d8f",   // verd turquesa
+  "ECM Tortosa": "#ffb703",     // groc intens
+  "ECM Reus": "#9b5de5",        // violeta
+  "CEE Sant Rafael": "#fb5607", // taronja fort
+  "CEE Alba": "#3a86ff",        // blau elèctric
+  "CEE Sant Jordi": "#6a994e"   // verd oliva
 };
+
 
 
 // =====================================================
