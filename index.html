@@ -17,78 +17,35 @@
 <body>
   <main>
     <!-- Contenidor del mapa -->
-    <div id="map" role="region" aria-label="Mapa d'activitats educatives"></div>
-    <div id="loading">
-  Carregant activitats…
-</div>
+    <div id="map" role="region" aria-label="Mapa d'activitats educatives">
+      <div id="loading">
+      Carregant activitats…
+    </div>
+    </div>
+    
 
     <!-- Panell de filtres -->
     <aside id="centerPanel" class="panel" aria-label="Filtres de centres">
+      <img id="logodipta" src="https://www.dipta.cat/estudiarartidisseny/img/DIPTA.svg">
       <h2>Activitats Educació DIPTA</h2>
 
-      <details id="centersDetails">
-      <summary><h3>Centres educatius</h3></summary>
+      <div id="centerSelect" class="custom-select">
+        <div class="select-display" data-value="all">
+          Tots els centres
+        </div>
 
-      <div class="centers-content">
-      <label class="center-item">
-      <input type="checkbox" value="EAD Tarragona" checked>
-        <span class="color-box" style="background: #e63946;"></span>
-        <span class="center-name">EAD Tarragona</span>
-        <span class="center-count">(0)</span>
-      </label>
-
-      <label class="center-item">
-        <input type="checkbox" value="EAD Reus" checked>
-        <span class="color-box" style="background: #1d3557;"></span>
-        <span class="center-name">EAD Reus</span>
-        <span class="center-count">(0)</span>
-      </label>
-
-      <label class="center-item">
-        <input type="checkbox" value="ECM Tarragona" checked>
-        <span class="color-box" style="background: #2a9d8f;"></span>
-        <span class="center-name">ECM Tarragona</span>
-        <span class="center-count">(0)</span>
-      </label>
-
-      <label class="center-item">
-        <input type="checkbox" value="ECM Tortosa" checked>
-        <span class="color-box" style="background: #ffb703;"></span>
-        <span class="center-name">ECM Tortosa</span>
-        <span class="center-count">(0)</span>
-      </label>
-
-      <label class="center-item">
-        <input type="checkbox" value="ECM Reus" checked>
-        <span class="color-box" style="background: #9b5de5;"></span>
-        <span class="center-name">ECM Reus</span>
-        <span class="center-count">(0)</span>
-      </label>
-
-      <label class="center-item">
-        <input type="checkbox" value="CEE Sant Rafael" checked>
-        <span class="color-box" style="background: #fb5607;"></span>
-        <span class="center-name">CEE Sant Rafael</span>
-        <span class="center-count">(0)</span>
-      </label>
-
-      <label class="center-item">
-        <input type="checkbox" value="CEE Alba" checked>
-        <span class="color-box" style="background: #3a86ff;"></span>
-        <span class="center-name">CEE Alba</span>
-        <span class="center-count">(0)</span>
-      </label>
-
-      <label class="center-item">
-        <input type="checkbox" value="CEE Sant Jordi" checked>
-        <span class="color-box" style="background: #6a994e;"></span>
-        <span class="center-name">CEE Sant Jordi</span>
-        <span class="center-count">(0)</span>
-      </label>
-
-        <hr>
-        <label><input type="checkbox" id="heatToggle">Mapa de calor</label>
-        <hr>
+        <div class="select-options">
+          <div class="select-option" data-value="all">Tots els centres</div>
+          <div class="select-option" data-value="EAD Tarragona">EAD Tarragona</div>
+          <div class="select-option" data-value="EAD Reus">EAD Reus</div>
+          <div class="select-option" data-value="ECM Tarragona">ECM Tarragona</div>
+          <div class="select-option" data-value="ECM Tortosa">ECM Tortosa</div>
+          <div class="select-option" data-value="ECM Reus">ECM Reus</div>
+          <div class="select-option" data-value="CEE Sant Rafael">CEE Sant Rafael</div>
+          <div class="select-option" data-value="CEE Alba">CEE Alba</div>
+          <div class="select-option" data-value="CEE Sant Jordi">CEE Sant Jordi</div>
+        </div>
+      </div>
   </div>
 </details>
 <div class="activity-list">
