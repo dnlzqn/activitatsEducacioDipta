@@ -4,32 +4,58 @@
 
 // Colors per centre
 const centerColors = {
-  "EAD Tarragona": "#e63946",   // vermell intens
-  "EAD Reus": "#1d3557",        // blau fosc
-  "ECM Tarragona": "#2a9d8f",   // verd turquesa
-  "ECM Tortosa": "#ffb703",     // groc intens
-  "ECM Reus": "#9b5de5",        // violeta
-  "CEE Sant Rafael": "#fb5607", // taronja fort
-  "CEE Alba": "#3a86ff",        // blau elèctric
-  "CEE Sant Jordi": "#6a994e"   // verd oliva
+  "EAD Tarragona": "#e63946",
+  "EAD Reus": "#1d3557",
+  "ECM Tarragona": "#2a9d8f",
+  "ECM Tortosa": "#ffb703",
+  "ECM Reus": "#9b5de5",
+  "CEE Sant Rafael": "#fb5607",
+  "CEE Alba": "#3a86ff",
+  "CEE Sant Jordi": "#6a994e"
 };
 
 let activities = [];
 let allMarkers = [];
 
+
 // =====================================================
-// 2. CREACIÓ DEL MAPA BASE
+// 2. COORDENADES AUTOMÀTIQUES
+// =====================================================
+
+// Coordenades per lloc
+const placeCoordinates = {
+  "Conservatori Tarragona": [41.1178, 1.2556],
+  "Auditori Diputació": [41.1180, 1.2451],
+  "Teatre Tarragona": [41.1143, 1.2557],
+  "Biblioteca pública": [41.1138, 1.2500],
+  "Camp de Mart": [41.1200, 1.2560],
+  "Conservatori Reus": [41.1537, 1.1068],
+  "Auditori Higini Anglès": [41.1537, 1.1068],
+  "Barcelona": [41.3874, 2.1686]
+};
+
+// Coordenades per centre (fallback)
+const centerCoordinates = {
+  "ECM Tarragona": [41.1178, 1.2556],
+  "ECM Reus": [41.1537, 1.1068],
+  "ECM Tortosa": [40.8120, 0.5210],
+  "EAD Tarragona": [41.1189, 1.2445],
+  "EAD Reus": [41.1537, 1.1068]
+};
+
+
+// =====================================================
+// 3. CREACIÓ DEL MAPA BASE
 // =====================================================
 
 const map = L.map('map').setView([41.1189, 1.2445], 9);
 
-// Capa base OpenStreetMap
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png')
   .addTo(map);
 
 
 // =====================================================
-// 3. CLUSTERS PERSONALITZATS
+// 4. CLUSTERS PERSONALITZATS
 // =====================================================
 
 const markers = L.markerClusterGroup({
@@ -69,7 +95,6 @@ const markers = L.markerClusterGroup({
           color:white;
           font-weight:bold;
           border:3px solid white;
-          box-shadow:0 0 6px rgba(0,0,0,0.4);
         ">
           ${size}
         </div>
@@ -81,6 +106,34 @@ const markers = L.markerClusterGroup({
 });
 
 
+// =====================================================
+// 5. HEATMAP
+// =====================================================
+
+const heatLayer = L.heatLayer([], {
+  radius: 25,
+  blur: 20,
+  maxZoom: 12
+});
+
+
+// =====================================================
+// 6. ICONA DE MARCADOR
+// =====================================================
+
+function getMarkerIcon(color) {
+  return L.divIcon({
+    className: "custom-marker",
+    html: `<div style="background:${color};"></div>`,
+    iconSize: [20, 20],
+    iconAnchor: [10, 10]
+  });
+}
+
+
+// =====================================================
+// 7. CÀRREGA CSV SENSE COORDENADES
+// =====================================================
 
 async function loadCSV(path) {
   const response = await fetch(path);
@@ -93,45 +146,37 @@ async function loadCSV(path) {
     .map(line => {
       const parts = line.split(";");
 
-      const lat = parseFloat(parts[4]);
-      const lng = parseFloat(parts[5]);
+      const title = parts[0];
+      const place = parts[1];
+      const date = parts[2];
+      const center = parts[3];
 
-      if (isNaN(lat) || isNaN(lng)) {
+      let coords = placeCoordinates[place];
+
+      if (!coords) {
+        coords = centerCoordinates[center];
+      }
+
+      if (!coords) {
+        console.warn("Sense coordenades:", place, center);
         return null;
       }
 
       return {
-        title: parts[0],
-        place: parts[1],
-        date: parts[2],
-        center: parts[3],
-        lat: lat,
-        lng: lng
+        title,
+        place,
+        date,
+        center,
+        lat: coords[0],
+        lng: coords[1]
       };
     })
     .filter(item => item !== null);
 }
 
 
-
-
-
-
-async function loadAllActivities() {
-
-  const tgn = await loadCSV(
-    "https://docs.google.com/spreadsheets/d/e/2PACX-1vTOCPgqmpXlmIgw6mP_BCttJS5wp_YrGvUq-C1yZGG6T89fioT5zTYSoYcoGWA1Km8mkSlIoumhdwfM/pub?output=csv"
-  );
-
-  activities = [
-    ...tgn
-  ];
-
-  initMap();
-}
-
 // =====================================================
-// CONSTRUCCIÓ DEL MAPA
+// 8. CONSTRUCCIÓ DEL MAPA
 // =====================================================
 
 function initMap() {
@@ -139,7 +184,6 @@ function initMap() {
   markers.clearLayers();
   allMarkers.length = 0;
 
-  // Actualitzar heatmap
   const heatPoints = activities.map(act => [
     act.lat,
     act.lng,
@@ -147,7 +191,6 @@ function initMap() {
   ]);
   heatLayer.setLatLngs(heatPoints);
 
-  // Crear marcadors
   activities.forEach(act => {
 
     const color = centerColors[act.center] || "#666";
@@ -161,10 +204,10 @@ function initMap() {
     );
 
     marker.bindPopup(`
-      <strong>${act.title || "Activitat"}</strong><br>
-      Centre: ${act.center || "—"}<br>
-      Lloc: ${act.place || "—"}<br>
-      Data: ${act.date || "—"}
+      <strong>${act.title}</strong><br>
+      Centre: ${act.center}<br>
+      Lloc: ${act.place}<br>
+      Data: ${act.date}
     `);
 
     markers.addLayer(marker);
@@ -172,137 +215,29 @@ function initMap() {
   });
 
   map.addLayer(markers);
-
-  updateCenterCounts();
-  updateFilters();
-}
-
-
-
-// ===============================
-// 5. COMPTADOR D’ACTIVITATS PER CENTRE
-// ===============================
-
-function updateCenterCounts() {
-
-  const counts = {};
-
-  activities.forEach(act => {
-    counts[act.center] = (counts[act.center] || 0) + 1;
-  });
-
-  const items = document.querySelectorAll(".center-item");
-
-  items.forEach(item => {
-    const checkbox = item.querySelector("input[type=checkbox]");
-    const center = checkbox.value;
-    const countEl = item.querySelector(".center-count");
-
-    if (countEl) {
-      countEl.textContent = `(${counts[center] || 0})`;
-    }
-  });
-}
-
-
-
-// =====================================================
-// 6. HEATMAP
-// =====================================================
-
-const heatPoints = activities.map(act => [
-  act.lat,
-  act.lng,
-  1
-]);
-
-const heatLayer = L.heatLayer(heatPoints, {
-  radius: 25,
-  blur: 20,
-  maxZoom: 12
-});
-
-
-// =====================================================
-// 7. FUNCIÓ D’ICONA DE MARCADOR
-// =====================================================
-
-function getMarkerIcon(color) {
-  return L.divIcon({
-    className: "custom-marker",
-    html: `<div style="background:${color};"></div>`,
-    iconSize: [20, 20],
-    iconAnchor: [10, 10]
-  });
-}
-
-
-
-
-
-// =====================================================
-// 9. UI: PANELL I FILTRES
-// =====================================================
-
-const panel = document.getElementById("centerPanel");
-const toggleBtn = document.getElementById("togglePanel");
-const heatToggle = document.getElementById("heatToggle");
-
-// Obrir / tancar panell
-toggleBtn.addEventListener("click", () => {
-  panel.style.display = panel.style.display === "block" ? "none" : "block";
-});
-
-// Checkboxes de centres
-const checkboxes = panel.querySelectorAll("input[type=checkbox]");
-
-checkboxes.forEach(cb => {
-  cb.addEventListener("change", updateFilters);
-});
-
-
-// =====================================================
-// 10. FILTRE PER CENTRES
-// =====================================================
-
-function updateFilters() {
-
-  // Si heatmap actiu, no fer res
-  if (heatToggle.checked) return;
-
-  const activeCenters = Array.from(checkboxes)
-    .filter(cb => cb.checked)
-    .map(cb => cb.value);
-
-  markers.clearLayers();
-
-  allMarkers.forEach(marker => {
-    if (activeCenters.includes(marker.options.center)) {
-      markers.addLayer(marker);
-    }
-  });
 }
 
 
 // =====================================================
-// 11. TOGGLE MAPA DE CALOR
+// 9. CÀRREGA GLOBAL D’ACTIVITATS
 // =====================================================
 
-heatToggle.checked = false;
+async function loadAllActivities() {
 
-heatToggle.addEventListener("change", () => {
+  const tgn = await loadCSV(
+    "https://dnlzqn.github.io/activitatsEducacioDipta/data/ECMTarragona.csv"
+  );
 
-  if (heatToggle.checked) {
-    map.removeLayer(markers);
-    map.addLayer(heatLayer);
+  activities = [
+    ...tgn
+  ];
 
-  } else {
-    map.removeLayer(heatLayer);
-    map.addLayer(markers);
-    updateFilters();
-  }
-});
+  initMap();
+}
+
+
+// =====================================================
+// INICI
+// =====================================================
 
 loadAllActivities();
-
-
