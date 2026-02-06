@@ -224,12 +224,17 @@ function initMap() {
 
 async function loadAllActivities() {
 
-  const tgn = await loadCSV(
+  const ecmtgn = await loadCSV(
     "https://dnlzqn.github.io/activitatsEducacioDipta/data/ECMTarragona.csv"
   );
 
+  const ecmreus = await loadCSV(
+    "https://dnlzqn.github.io/activitatsEducacioDipta/data/ECMReus.csv"
+  );
+
   activities = [
-    ...tgn
+    ...ecmtgn,
+    ...ecmreus
   ];
 
   initMap();
@@ -241,3 +246,4 @@ async function loadAllActivities() {
 // =====================================================
 
 loadAllActivities();
+
