@@ -84,12 +84,6 @@ const markers = L.markerClusterGroup({
 
 async function loadCSV(path) {
   const response = await fetch(path);
-
-  if (!response.ok) {
-    console.error("Error carregant CSV:", path);
-    return [];
-  }
-
   const text = await response.text();
 
   const lines = text.split("\n").slice(1);
@@ -99,16 +93,25 @@ async function loadCSV(path) {
     .map(line => {
       const parts = line.split(";");
 
+      const lat = parseFloat(parts[4]);
+      const lng = parseFloat(parts[5]);
+
+      if (isNaN(lat) || isNaN(lng)) {
+        return null;
+      }
+
       return {
         title: parts[0],
         place: parts[1],
         date: parts[2],
         center: parts[3],
-        lat: parseFloat(parts[4]),
-        lng: parseFloat(parts[5])
+        lat: lat,
+        lng: lng
       };
-    });
+    })
+    .filter(item => item !== null);
 }
+
 
 
 
@@ -301,4 +304,5 @@ heatToggle.addEventListener("change", () => {
 });
 
 loadAllActivities();
+
 
