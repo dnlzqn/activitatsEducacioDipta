@@ -19,18 +19,11 @@
     <!-- Contenidor del mapa -->
     <div id="map" role="region" aria-label="Mapa d'activitats educatives"></div>
 
-    <!-- Botó per obrir el panell -->
-    <button 
-      id="togglePanel" 
-      class="panel-button"
-      aria-controls="centerPanel"
-      aria-expanded="false">
-      Educació DIPTA
-    </button>
-
     <!-- Panell de filtres -->
     <aside id="centerPanel" class="panel" aria-label="Filtres de centres">
-      <h3>Activitats realitzades</h3>
+      <div>
+      <h2>Educació DIPTA</h2>
+      <h3>Centres educatius</h3>
 
       <label class="center-item">
       <input type="checkbox" value="EAD Tarragona" checked>
@@ -91,9 +84,9 @@
         <hr>
         <label><input type="checkbox" id="heatToggle">Mapa de calor</label>
         <hr>
-
+</div>
 <div class="activity-list">
-  <h4>Activitats</h4>
+  <h3>Activitats</h3>
   <div id="activityList"></div>
 </div>
     </aside>
