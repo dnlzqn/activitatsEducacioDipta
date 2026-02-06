@@ -215,6 +215,8 @@ function initMap() {
   });
 
   map.addLayer(markers);
+  updateCenterCounts();
+  updateFilters();
 }
 
 
@@ -260,6 +262,27 @@ checkboxes.forEach(cb => {
   cb.addEventListener("change", updateFilters);
 });
 
+function updateCenterCounts() {
+
+  const counts = {};
+
+  activities.forEach(act => {
+    counts[act.center] = (counts[act.center] || 0) + 1;
+  });
+
+  const items = document.querySelectorAll(".center-item");
+
+  items.forEach(item => {
+    const checkbox = item.querySelector("input[type=checkbox]");
+    const center = checkbox.value;
+    const countEl = item.querySelector(".center-count");
+
+    if (countEl) {
+      countEl.textContent = `(${counts[center] || 0})`;
+    }
+  });
+}
+
 
 // =====================================================
 // 10. FILTRE PER CENTRES
@@ -303,12 +326,13 @@ heatToggle.addEventListener("change", () => {
   }
 });
 
-updateCenterCounts();
+
 
 // =====================================================
 // INICI
 // =====================================================
 
 loadAllActivities();
+
 
 
