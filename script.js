@@ -359,34 +359,35 @@ const heatToggle = document.getElementById("heatToggle");
 
 
 
-// Checkboxes de centres
-const checkboxes = panel.querySelectorAll(".center-item input[type=checkbox]");
+const centerSelect = document.getElementById("centerSelect");
 
-checkboxes.forEach(cb => {
-  cb.addEventListener("change", updateFilters);
-});
+centerSelect.addEventListener("change", updateFilters);
 
 
 // =====================================================
 // 10. FILTRE PER CENTRES
 // =====================================================
 
+
+
+
 function updateFilters() {
-
-  if (heatToggle.checked) return;
-
-  const activeCenters = Array.from(checkboxes)
-    .filter(cb => cb.checked)
-    .map(cb => cb.value.trim());
 
   markers.clearLayers();
 
   const visibleActivities = [];
 
   allMarkers.forEach((marker, index) => {
-    if (activeCenters.includes(marker.options.center)) {
+
+    const activity = activities[index];
+
+    const show =
+      selectedCenter === "all" ||
+      activity.center === selectedCenter;
+
+    if (show) {
       markers.addLayer(marker);
-      visibleActivities.push(activities[index]);
+      visibleActivities.push(activity);
     }
   });
 
@@ -399,20 +400,20 @@ function updateFilters() {
 // 11. TOGGLE MAPA DE CALOR
 // =====================================================
 
-heatToggle.checked = false;
+// heatToggle.checked = false;
 
-heatToggle.addEventListener("change", () => {
+// heatToggle.addEventListener("change", () => {
 
-  if (heatToggle.checked) {
-    map.removeLayer(markers);
-    map.addLayer(heatLayer);
+//   if (heatToggle.checked) {
+//     map.removeLayer(markers);
+//     map.addLayer(heatLayer);
 
-  } else {
-    map.removeLayer(heatLayer);
-    map.addLayer(markers);
-    updateFilters();
-  }
-});
+//   } else {
+//     map.removeLayer(heatLayer);
+//     map.addLayer(markers);
+//     updateFilters();
+//   }
+// });
 
 
 
@@ -468,8 +469,7 @@ function initMap() {
   map.addLayer(markers);
   updateCenterCounts();
   updateFilters();
-
-renderActivityList(activities);
+  renderActivityList(activities);
 
 
 }
@@ -503,6 +503,8 @@ div.addEventListener("click", () => {
   if (!act.marker) return;
 
   markers.zoomToShowLayer(act.marker, () => {
+
+    
 
     // restaurar marcador anterior
     if (activeMarker) {
@@ -544,6 +546,36 @@ if (toggleCenters && centersBlock) {
 }
 
 
+const customSelect = document.getElementById("centerSelect");
+const selectDisplay = customSelect.querySelector(".select-display");
+const selectOptions = customSelect.querySelectorAll(".select-option");
+
+let selectedCenter = "all";
+
+// abrir/cerrar menú
+selectDisplay.addEventListener("click", () => {
+  customSelect.classList.toggle("open");
+});
+
+// elegir opción
+selectOptions.forEach(option => {
+  option.addEventListener("click", () => {
+
+    selectedCenter = option.dataset.value;
+    selectDisplay.textContent = option.textContent;
+    selectDisplay.dataset.value = selectedCenter;
+
+    customSelect.classList.remove("open");
+    updateFilters();
+  });
+});
+
+// cerrar si se hace click fuera
+document.addEventListener("click", (e) => {
+  if (!customSelect.contains(e.target)) {
+    customSelect.classList.remove("open");
+  }
+});
 
 
 
