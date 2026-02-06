@@ -66,7 +66,7 @@ html, body {
   width: 300px;
   height: 100%;
   display: flex;
-  flex-direction:columnn;
+  flex-direction:column;
   justify-content: flex-start;
 }
 
@@ -144,4 +144,5 @@ html, body {
 .leaflet-control-container{
   display: none;
 }
+
 
