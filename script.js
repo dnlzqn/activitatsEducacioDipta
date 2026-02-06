@@ -55,21 +55,21 @@ const placeCoordinates = {
   "Palau Bofarull": [41.15663998929609, 1.1067464947700503],
   "Saló Noble Palau Bofarull": [41.15663998929609, 1.1067464947700503],
   "Prioral de Sant Pere":[41.154320990302566, 1.1097398400306704],
-  "Teatre Fortuny Reus":[41.15607655460499, 1.106775999069214]
+  "Teatre Fortuny Reus":[41.15607655460499, 1.106775999069214],
   "Reus i rodalies":[41.1537, 1.1068],
   "Reus":[41.1537, 1.1068],
   "Online":[41.1537, 1.1068],
   "Tarragona":[41.1143, 1.2557],
-  "Platja de l'Arrabassada": [lat: 41.1305, lng: 1.2762],
-"Els Pallaresos": [lat: 41.1746, lng: 1.2726],
-"Olot": [lat: 42.1817, lng: 2.4889],
-"MAMT Tarragona":[lat: 41.11726404543777, lng: 1.25850185751915],
-"Renau":[lat: 41.2245, lng: 1.3112],
-"Port de Tarragona":[lat: 41.1054, lng: 1.2458],
-"Gratallops":[lat: 41.1936, lng: 0.7752],
-"CaixaForum Tarragona":[lat: 41.1189, lng: 1.2445],
-"Sant Joan de Mediona":[lat: 41.4762, lng: 1.6123],
-"Vic":[lat: 41.9301, lng: 2.2549]
+  "Platja de l'Arrabassada": [41.1305, 1.2762],
+  "Els Pallaresos": [ 41.1746, 1.2726],
+  "Olot": [42.1817, 2.4889],
+  "MAMT Tarragona":[41.11726404543777, 1.25850185751915],
+  "Renau":[41.2245, 1.3112],
+  "Port de Tarragona":[41.1054, 1.2458],
+  "Gratallops":[41.1936, 0.7752],
+  "CaixaForum Tarragona":[41.1189, 1.2445],
+  "Sant Joan de Mediona":[41.4762, 1.6123],
+  "Vic":[41.9301, 2.2549]
 };
 
   //41.11781265862017, 1.2556017190217974 conservatori tarragona
@@ -428,5 +428,6 @@ function initMap() {
 
 
 loadAllActivities();
+
 
 
