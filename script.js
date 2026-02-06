@@ -16,6 +16,8 @@ const centerColors = {
 
 let activities = [];
 const allMarkers = [];
+let activeMarker = null;
+
 
 
 
@@ -190,23 +192,15 @@ async function loadCSV(path) {
 // 9. CÀRREGA GLOBAL D’ACTIVITATS
 // =====================================================
 
+
 async function loadAllActivities() {
 
-  const ecmtgn = await loadCSV(
-    //"https://dnlzqn.github.io/activitatsEducacioDipta/data/ECMTarragona.csv"
-    "https://docs.google.com/spreadsheets/d/e/2PACX-1vQM9_3hh4cmaap-esG8M69XanLMNLfjy8r8ifOTnR47ZcyFBLjLl7lT32q7wtML0aOZBe8vY6WvkY_v/pub?output=csv"
-  );
-
-  const ecmreus = await loadCSV(
-    //"https://dnlzqn.github.io/activitatsEducacioDipta/data/ECMReus.csv"
-    "https://docs.google.com/spreadsheets/d/e/2PACX-1vSVcE7byD4WyMLNz9koF-JmCNH5c88mtN3eHZggjBqwlB4JAcbfPhyKVOx0skPCnHKYm0WgvNG87Qdv/pub?output=csv"
-  );
-
- const eadtarragona = await loadCSV(
-  "https://docs.google.com/spreadsheets/d/e/2PACX-1vTwPWgHKEvVZHbxF1o-0z3UAaUOd3Tnmn959AsYLxLifdlpn8e8z3uENnJtun0nwktqkhV-4eZe1nIy/pub?output=csv"
-  );
-
- const eadreus = await loadCSV("https://docs.google.com/spreadsheets/d/e/2PACX-1vQASlY9Y8uyzLDimZp0PB6IJ53r-ohTIffRQ-gCpdEiP8-RRH-CBvuu8CS3yzA59JXtPL4hVQ9z9yyH/pub?output=csv");
+  const [ecmtgn, ecmreus, eadtarragona, eadreus] = await Promise.all([
+    loadCSV("https://docs.google.com/spreadsheets/d/e/2PACX-1vQM9_3hh4cmaap-esG8M69XanLMNLfjy8r8ifOTnR47ZcyFBLjLl7lT32q7wtML0aOZBe8vY6WvkY_v/pub?output=csv"),
+    loadCSV("https://docs.google.com/spreadsheets/d/e/2PACX-1vSVcE7byD4WyMLNz9koF-JmCNH5c88mtN3eHZggjBqwlB4JAcbfPhyKVOx0skPCnHKYm0WgvNG87Qdv/pub?output=csv"),
+    loadCSV("https://docs.google.com/spreadsheets/d/e/2PACX-1vTwPWgHKEvVZHbxF1o-0z3UAaUOd3Tnmn959AsYLxLifdlpn8e8z3uENnJtun0nwktqkhV-4eZe1nIy/pub?output=csv"),
+    loadCSV("https://docs.google.com/spreadsheets/d/e/2PACX-1vQASlY9Y8uyzLDimZp0PB6IJ53r-ohTIffRQ-gCpdEiP8-RRH-CBvuu8CS3yzA59JXtPL4hVQ9z9yyH/pub?output=csv")
+  ]);
 
   activities = [
     ...eadtarragona,
@@ -215,10 +209,12 @@ async function loadAllActivities() {
     ...ecmreus
   ];
 
+
   initMap();
 
+  const loading = document.getElementById("loading");
+  if (loading) loading.style.display = "none";
 }
-
 
 
 
@@ -286,6 +282,69 @@ function getMarkerIcon(color) {
     iconAnchor: [10, 10]
   });
 }
+
+function getActiveMarkerIcon(color) {
+  return L.divIcon({
+    className: "custom-marker active-marker",
+    html: `
+      <div style="
+        width:26px;
+        height:26px;
+        background:${color};
+        border-radius:50%;
+        border:3px solid black;
+      "></div>
+    `,
+    iconSize: [26, 26],
+    iconAnchor: [13, 13]
+  });
+}
+
+
+
+
+
+
+
+function parseDate(dateStr) {
+  if (!dateStr) return new Date(0);
+
+  const months = {
+    gener: 0, enero: 0,
+    febrer: 1, febrero: 1,
+    març: 2, marzo: 2,
+    abril: 3,
+    maig: 4, mayo: 4,
+    juny: 5, junio: 5,
+    juliol: 6, julio: 6,
+    agost: 7, agosto: 7,
+    setembre: 8, septiembre: 8,
+    octubre: 9,
+    novembre: 10, noviembre: 10,
+    desembre: 11, diciembre: 11
+  };
+
+  const parts = dateStr.toLowerCase().split(" ");
+
+  // formato: "21 nov 2024"
+  if (parts.length === 3 && !isNaN(parts[0])) {
+    const day = parseInt(parts[0]);
+    const month = months[parts[1]] ?? 0;
+    const year = parseInt(parts[2]);
+    return new Date(year, month, day);
+  }
+
+  // formato: "abril 2025"
+  if (parts.length === 2) {
+    const month = months[parts[0]] ?? 0;
+    const year = parseInt(parts[1]);
+    return new Date(year, month, 1);
+  }
+
+  return new Date(0);
+}
+
+
 
 
 
@@ -392,6 +451,9 @@ function initMap() {
       }
     );
 
+    act.marker = marker;
+
+
     marker.bindPopup(`
       <strong>${act.title}</strong><br>
       Centre: ${act.center}<br>
@@ -420,9 +482,42 @@ function renderActivityList(filteredActivities) {
   const container = document.getElementById("activityList");
   container.innerHTML = "";
 
-  filteredActivities.forEach(act => {
+  // ordenar por fecha (más reciente arriba)
+  const sorted = [...filteredActivities].sort((a, b) => {
+    return parseDate(b.date) - parseDate(a.date);
+  });
+
+  sorted.forEach(act => {
     const div = document.createElement("div");
     div.className = "activity-item";
+    div.style.cursor = "pointer";
+
+div.addEventListener("click", () => {
+
+  // quitar selección previa en lista
+  document.querySelectorAll(".activity-item.active")
+    .forEach(el => el.classList.remove("active"));
+
+  div.classList.add("active");
+
+  if (!act.marker) return;
+
+  markers.zoomToShowLayer(act.marker, () => {
+
+    // restaurar marcador anterior
+    if (activeMarker) {
+      const prevColor = centerColors[activeMarker.options.center] || "#666";
+      activeMarker.setIcon(getMarkerIcon(prevColor));
+    }
+
+    // activar marcador actual
+    const color = centerColors[act.center] || "#666";
+    act.marker.setIcon(getActiveMarkerIcon(color));
+    activeMarker = act.marker;
+
+    act.marker.openPopup();
+  });
+});
 
     div.innerHTML = `
       <strong>${act.title}</strong>
@@ -433,3 +528,22 @@ function renderActivityList(filteredActivities) {
     container.appendChild(div);
   });
 }
+
+
+
+
+
+const toggleCenters = document.getElementById("toggleCenters");
+const centersBlock = document.getElementById("centersBlock");
+
+if (toggleCenters && centersBlock) {
+  toggleCenters.addEventListener("click", () => {
+    centersBlock.classList.toggle("collapsed");
+    toggleCenters.classList.toggle("open");
+  });
+}
+
+
+
+
+
