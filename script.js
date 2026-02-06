@@ -296,13 +296,9 @@ function getMarkerIcon(color) {
 // =====================================================
 
 const panel = document.getElementById("centerPanel");
-const toggleBtn = document.getElementById("togglePanel");
 const heatToggle = document.getElementById("heatToggle");
 
-// Obrir / tancar panell
-toggleBtn.addEventListener("click", () => {
-  panel.style.display = panel.style.display === "block" ? "none" : "block";
-});
+
 
 // Checkboxes de centres
 const checkboxes = panel.querySelectorAll(".center-item input[type=checkbox]");
