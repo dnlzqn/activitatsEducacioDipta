@@ -240,10 +240,75 @@ async function loadAllActivities() {
   initMap();
 }
 
+// =====================================================
+// 9. UI: PANELL I FILTRES
+// =====================================================
+
+const panel = document.getElementById("centerPanel");
+const toggleBtn = document.getElementById("togglePanel");
+const heatToggle = document.getElementById("heatToggle");
+
+// Obrir / tancar panell
+toggleBtn.addEventListener("click", () => {
+  panel.style.display = panel.style.display === "block" ? "none" : "block";
+});
+
+// Checkboxes de centres
+const checkboxes = panel.querySelectorAll("input[type=checkbox]");
+
+checkboxes.forEach(cb => {
+  cb.addEventListener("change", updateFilters);
+});
+
+
+// =====================================================
+// 10. FILTRE PER CENTRES
+// =====================================================
+
+function updateFilters() {
+
+  // Si heatmap actiu, no fer res
+  if (heatToggle.checked) return;
+
+  const activeCenters = Array.from(checkboxes)
+    .filter(cb => cb.checked)
+    .map(cb => cb.value);
+
+  markers.clearLayers();
+
+  allMarkers.forEach(marker => {
+    if (activeCenters.includes(marker.options.center)) {
+      markers.addLayer(marker);
+    }
+  });
+}
+
+
+// =====================================================
+// 11. TOGGLE MAPA DE CALOR
+// =====================================================
+
+heatToggle.checked = false;
+
+heatToggle.addEventListener("change", () => {
+
+  if (heatToggle.checked) {
+    map.removeLayer(markers);
+    map.addLayer(heatLayer);
+
+  } else {
+    map.removeLayer(heatLayer);
+    map.addLayer(markers);
+    updateFilters();
+  }
+});
+
+updateCenterCounts();
 
 // =====================================================
 // INICI
 // =====================================================
 
 loadAllActivities();
+
 
