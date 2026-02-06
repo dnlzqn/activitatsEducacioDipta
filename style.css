@@ -121,3 +121,29 @@ html, body {
 .leaflet-control-container{
   display: none;
 }
+
+.activity-list {
+  margin-top: 10px;
+}
+
+#activityList {
+  max-height: 250px;
+  overflow-y: auto;
+  border-top: 1px solid #ddd;
+  padding-top: 6px;
+}
+
+.activity-item {
+  font-size: 12px;
+  padding: 6px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.activity-item strong {
+  display: block;
+  font-size: 12px;
+}
+
+.activity-item span {
+  opacity: 0.7;
+}

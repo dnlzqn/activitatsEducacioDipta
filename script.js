@@ -55,21 +55,8 @@ const placeCoordinates = {
   "Palau Bofarull": [41.15663998929609, 1.1067464947700503],
   "Saló Noble Palau Bofarull": [41.15663998929609, 1.1067464947700503],
   "Prioral de Sant Pere":[41.154320990302566, 1.1097398400306704],
-  "Teatre Fortuny Reus":[41.15607655460499, 1.106775999069214],
-  "Reus i rodalies":[41.1537, 1.1068],
-  "Reus":[41.1537, 1.1068],
-  "Online":[41.1537, 1.1068],
-  "Tarragona":[41.1143, 1.2557],
-  "Platja de l'Arrabassada": [41.1305, 1.2762],
-  "Els Pallaresos": [ 41.1746, 1.2726],
-  "Olot": [42.1817, 2.4889],
-  "MAMT Tarragona":[41.11726404543777, 1.25850185751915],
-  "Renau":[41.2245, 1.3112],
-  "Port de Tarragona":[41.1054, 1.2458],
-  "Gratallops":[41.1936, 0.7752],
-  "CaixaForum Tarragona":[41.1189, 1.2445],
-  "Sant Joan de Mediona":[41.4762, 1.6123],
-  "Vic":[41.9301, 2.2549]
+  "Teatre Fortuny Reus":[41.15607655460499, 1.106775999069214]
+
 };
 
   //41.11781265862017, 1.2556017190217974 conservatori tarragona
@@ -331,21 +318,26 @@ checkboxes.forEach(cb => {
 
 function updateFilters() {
 
-  // Si heatmap actiu, no fer res
   if (heatToggle.checked) return;
 
   const activeCenters = Array.from(checkboxes)
     .filter(cb => cb.checked)
-    .map(cb => cb.value);
+    .map(cb => cb.value.trim());
 
   markers.clearLayers();
 
-  allMarkers.forEach(marker => {
+  const visibleActivities = [];
+
+  allMarkers.forEach((marker, index) => {
     if (activeCenters.includes(marker.options.center)) {
       markers.addLayer(marker);
+      visibleActivities.push(activities[index]);
     }
   });
+
+  renderActivityList(visibleActivities);
 }
+
 
 
 // =====================================================
@@ -419,9 +411,7 @@ function initMap() {
   updateCenterCounts();
   updateFilters();
 
-  activities.forEach(act => {
-  console.log(act.center);
-});
+renderActivityList(activities);
 
 
 }
@@ -429,5 +419,21 @@ function initMap() {
 
 loadAllActivities();
 
+function renderActivityList(filteredActivities) {
 
+  const container = document.getElementById("activityList");
+  container.innerHTML = "";
 
+  filteredActivities.forEach(act => {
+    const div = document.createElement("div");
+    div.className = "activity-item";
+
+    div.innerHTML = `
+      <strong>${act.title}</strong>
+      <span>${act.place}</span><br>
+      <span>${act.date} · ${act.center}</span>
+    `;
+
+    container.appendChild(div);
+  });
+}
