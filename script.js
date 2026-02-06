@@ -83,11 +83,13 @@ const markers = L.markerClusterGroup({
 
 
 async function loadCSV(path) {
+  const response = await fetch(path);
 
-  const proxy = "https://corsproxy.io/?";
-  const url = proxy + encodeURIComponent(path);
+  if (!response.ok) {
+    console.error("Error carregant CSV:", path);
+    return [];
+  }
 
-  const response = await fetch(url);
   const text = await response.text();
 
   const lines = text.split("\n").slice(1);
@@ -299,3 +301,4 @@ heatToggle.addEventListener("change", () => {
 });
 
 loadAllActivities();
+
