@@ -198,7 +198,8 @@ async function loadAllActivities() {
   );
 
   const ecmreus = await loadCSV(
-    "https://dnlzqn.github.io/activitatsEducacioDipta/data/ECMReus.csv"
+    //"https://dnlzqn.github.io/activitatsEducacioDipta/data/ECMReus.csv"
+    "https://docs.google.com/spreadsheets/d/e/2PACX-1vSVcE7byD4WyMLNz9koF-JmCNH5c88mtN3eHZggjBqwlB4JAcbfPhyKVOx0skPCnHKYm0WgvNG87Qdv/pub?output=csv"
   );
 
   activities = [
@@ -406,3 +407,4 @@ function initMap() {
 
 
 loadAllActivities();
+
