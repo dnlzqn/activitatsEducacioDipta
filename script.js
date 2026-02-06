@@ -56,7 +56,20 @@ const placeCoordinates = {
   "Saló Noble Palau Bofarull": [41.15663998929609, 1.1067464947700503],
   "Prioral de Sant Pere":[41.154320990302566, 1.1097398400306704],
   "Teatre Fortuny Reus":[41.15607655460499, 1.106775999069214]
-
+  "Reus i rodalies":[41.1537, 1.1068],
+  "Reus":[41.1537, 1.1068],
+  "Online":[41.1537, 1.1068],
+  "Tarragona":[41.1143, 1.2557],
+  "Platja de l'Arrabassada": [lat: 41.1305, lng: 1.2762],
+"Els Pallaresos": [lat: 41.1746, lng: 1.2726],
+"Olot": [lat: 42.1817, lng: 2.4889],
+"MAMT Tarragona":[lat: 41.11726404543777, lng: 1.25850185751915],
+"Renau":[lat: 41.2245, lng: 1.3112],
+"Port de Tarragona":[lat: 41.1054, lng: 1.2458],
+"Gratallops":[lat: 41.1936, lng: 0.7752],
+"CaixaForum Tarragona":[lat: 41.1189, lng: 1.2445],
+"Sant Joan de Mediona":[lat: 41.4762, lng: 1.6123],
+"Vic":[lat: 41.9301, lng: 2.2549]
 };
 
   //41.11781265862017, 1.2556017190217974 conservatori tarragona
@@ -202,9 +215,17 @@ async function loadAllActivities() {
     "https://docs.google.com/spreadsheets/d/e/2PACX-1vSVcE7byD4WyMLNz9koF-JmCNH5c88mtN3eHZggjBqwlB4JAcbfPhyKVOx0skPCnHKYm0WgvNG87Qdv/pub?output=csv"
   );
 
+ const eadtarragona = await loadCSV(
+  "https://docs.google.com/spreadsheets/d/e/2PACX-1vTwPWgHKEvVZHbxF1o-0z3UAaUOd3Tnmn959AsYLxLifdlpn8e8z3uENnJtun0nwktqkhV-4eZe1nIy/pub?output=csv"
+  );
+
+ const eadreus = await loadCSV("https://docs.google.com/spreadsheets/d/e/2PACX-1vQASlY9Y8uyzLDimZp0PB6IJ53r-ohTIffRQ-gCpdEiP8-RRH-CBvuu8CS3yzA59JXtPL4hVQ9z9yyH/pub?output=csv");
+
   activities = [
+    ...eadtarragona,
+    ...eadreus,
     ...ecmtgn,
-    //...ecmreus
+    ...ecmreus
   ];
 
   initMap();
@@ -407,4 +428,5 @@ function initMap() {
 
 
 loadAllActivities();
+
 
