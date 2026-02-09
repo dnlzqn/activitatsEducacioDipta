@@ -13,6 +13,15 @@ html, body {
   height: 100vh;
 }
 
+#chartView {
+  position: absolute;
+  top: 0;
+  left: 300px; /* ancho del panel */
+  width: calc(100% - 300px);
+  height: 100vh;
+  background: white;
+}
+
 .marker-cluster-small,
 .marker-cluster-medium,
 .marker-cluster-large {

@@ -602,6 +602,8 @@ document.addEventListener("click", (e) => {
 
 // gràfica de dades
 
+let chartInstance = null;
+
 function getActivitiesByPlace() {
   const counts = {};
 
@@ -612,3 +614,46 @@ function getActivitiesByPlace() {
 
   return counts;
 }
+
+function renderChart() {
+
+  const data = getActivitiesByPlace();
+  const labels = Object.keys(data);
+  const values = Object.values(data);
+
+  const ctx = document.getElementById("chartView").getContext("2d");
+
+  if (chartInstance) {
+    chartInstance.destroy();
+  }
+
+  chartInstance = new Chart(ctx, {
+    type: "bar",
+    data: {
+      labels: labels,
+      datasets: [{
+        label: "Activitats per població",
+        data: values
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false
+    }
+  });
+}
+
+
+const mapDiv = document.getElementById("map");
+const chartCanvas = document.getElementById("chartView");
+
+document.getElementById("viewMap").addEventListener("click", () => {
+  mapDiv.style.display = "block";
+  chartCanvas.style.display = "none";
+});
+
+document.getElementById("viewChart").addEventListener("click", () => {
+  mapDiv.style.display = "none";
+  chartCanvas.style.display = "block";
+  renderChart();
+});
