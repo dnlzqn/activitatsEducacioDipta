@@ -180,7 +180,7 @@ html, body {
   position: relative;
   margin-bottom: 10px;
   font-size: 14px;
-  font-weight: 900;
+  font-weight: 600;
 }
 
 .select-display {
@@ -273,5 +273,6 @@ html, body {
     height: 50vh;
     padding: 12px;
   }
+
 
 }
