@@ -596,18 +596,25 @@ selectOptions.forEach(option => {
   option.addEventListener("click", () => {
 
     selectedCenter = option.dataset.value;
-    selectDisplay.textContent = option.textContent;
+
+    // texto del selector
+    if (selectedCenter === "all") {
+      selectDisplay.textContent = "Tots els centres educatius";
+    } else {
+      selectDisplay.textContent = "Centre educatiu: " + option.textContent;
+    }
+
     selectDisplay.dataset.value = selectedCenter;
 
     customSelect.classList.remove("open");
     updateFilters();
 
-    // si la gráfica está visible, actualizarla
     if (chartInstance) {
       renderChart();
     }
   });
 });
+
 
 // cerrar si se hace click fuera
 document.addEventListener("click", (e) => {
