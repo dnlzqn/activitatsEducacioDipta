@@ -183,6 +183,7 @@ async function loadCSV(path) {
     const place = row["place"] || row["Lloc"] || "";
     const date = row["date"] || row["Data"] || "";
     const center = (row["center"] || row["Centre"] || "").trim();
+    const poblacio = (row["poblacio"] || "").trim();
 
     let coords = placeCoordinates[place];
 
@@ -199,6 +200,7 @@ async function loadCSV(path) {
       place,
       date,
       center,
+      poblacio,
       lat: coords[0],
       lng: coords[1]
     };
@@ -608,7 +610,7 @@ function getActivitiesByPlace() {
   const counts = {};
 
   activities.forEach(act => {
-    const place = act.place.trim();
+    const poblacio = act.poblacio.trim();
     counts[place] = (counts[place] || 0) + 1;
   });
 
@@ -617,9 +619,11 @@ function getActivitiesByPlace() {
 
 function renderChart() {
 
-  const data = getActivitiesByPlace();
-  const labels = Object.keys(data);
-  const values = Object.values(data);
+  const entries = Object.entries(getActivitiesByPlace())
+    .sort((a, b) => b[1] - a[1]);
+
+  const labels = entries.map(e => e[0]);
+  const values = entries.map(e => e[1]);
 
   const ctx = document.getElementById("chartView").getContext("2d");
 
@@ -642,6 +646,7 @@ function renderChart() {
     }
   });
 }
+
 
 
 const mapDiv = document.getElementById("map");
