@@ -601,7 +601,7 @@ selectOptions.forEach(option => {
     if (selectedCenter === "all") {
       selectDisplay.textContent = "Tots els centres educatius";
     } else {
-      selectDisplay.textContent = "Centre educatiu: " + option.textContent;
+      selectDisplay.textContent = "Centre educatiu: " + option.textContent.toUpperCase();
     }
 
     selectDisplay.dataset.value = selectedCenter;

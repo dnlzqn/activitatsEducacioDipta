@@ -90,7 +90,7 @@ html, body {
 
 #logodipta {
   height: 31px;
-  margin-bottom: 1rem;
+  margin-bottom: .3rem;
   align-self: flex-start;
 }
 
@@ -209,10 +209,9 @@ html, body {
 
 .view-switch button {
   flex: 1;
-  background: #f3f3f3;
-  border: 1px solid black;
+  background: #e1e1e1;
   color: black;
-  border-radius: 0;
+  border-radius: 26px;
   padding: .3rem;
   text-align: center;
   text-decoration: none;
@@ -221,10 +220,11 @@ html, body {
   font-family: "Nata Sans", sans-serif;
   font-weight: 600;
   height: 30px;
+  border: none;
 }
 
 .view-switch button.active {
-  background: black;
+  background: #0083A9;
   color: white;
   position: relative;
 }
@@ -237,14 +237,15 @@ html, body {
 }
 
 .select-display {
-  background: #f3f3f3;
-  padding: 4px;
-  border: 1px solid black;
-  cursor: pointer;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 30px;
+    background: #0083A9;
+    padding: 0 14px;
+    border-radius: 40px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 30px;
+    color: white;
 }
 
 .select-display::after {
@@ -254,7 +255,7 @@ html, body {
 }
 
 .select-display:hover {
-  background: #eaeaea;
+  background: #007091;
 }
 
 .select-options {
@@ -262,12 +263,12 @@ html, body {
   top: calc(100% + 4px);
   left: 0;
   right: 0;
-  background: white;
-  border: 1px solid black;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  background: #efefef;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   overflow: hidden;
   display: none;
   z-index: 2000;
+  border-radius: 16px;
 }
 
 .custom-select.open .select-options {
@@ -280,7 +281,7 @@ html, body {
 }
 
 .select-option:hover {
-  background: #f0f0f0;
+  background: #bfbfbf;
 }
 
 
