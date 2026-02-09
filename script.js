@@ -598,3 +598,17 @@ document.addEventListener("click", (e) => {
 
 
 
+
+
+// gràfica de dades
+
+function getActivitiesByPlace() {
+  const counts = {};
+
+  activities.forEach(act => {
+    const place = act.place.trim();
+    counts[place] = (counts[place] || 0) + 1;
+  });
+
+  return counts;
+}
