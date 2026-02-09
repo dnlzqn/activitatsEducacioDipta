@@ -195,7 +195,7 @@ html, body {
 
 .custom-select {
   position: relative;
-  margin-bottom: 10px;
+  margin-bottom: 6px;
   font-size: 14px;
   font-weight: 600;
 }
@@ -220,7 +220,7 @@ html, body {
   cursor: pointer;
   font-family: "Nata Sans", sans-serif;
   font-weight: 600;
-
+  height: 30px;
 }
 
 .view-switch button.active {
@@ -244,6 +244,7 @@ html, body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  height: 30px;
 }
 
 .select-display::after {
