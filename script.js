@@ -601,6 +601,11 @@ selectOptions.forEach(option => {
 
     customSelect.classList.remove("open");
     updateFilters();
+
+    // si la gráfica está visible, actualizarla
+    if (chartInstance) {
+      renderChart();
+    }
   });
 });
 
@@ -624,12 +629,19 @@ function getActivitiesByPlace() {
   const counts = {};
 
   activities.forEach(act => {
-    const poblacio = act.poblacio.trim();
+
+    // aplicar filtro de centro
+    if (selectedCenter !== "all" && act.center !== selectedCenter) {
+      return;
+    }
+
+    const poblacio = (act.poblacio || "Sense població").trim();
     counts[poblacio] = (counts[poblacio] || 0) + 1;
   });
 
   return counts;
 }
+
 
 function renderChart() {
 
@@ -677,6 +689,9 @@ function renderChart() {
       scales: {
         x: {
           ticks: {
+            autoskip: false,
+            maxRotation: 90,
+            minRotation: 45,
             color: "#111",
             font: {
               size: 12
