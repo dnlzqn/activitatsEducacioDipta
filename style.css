@@ -16,7 +16,6 @@ html, body {
 #chartView {
   position: absolute;
   top: 0;
-  left: 360px;
   width: calc(100% - 360px);
   height: 100vh;
   background: white;
@@ -304,3 +303,4 @@ html, body {
 
 
 }
+
