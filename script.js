@@ -611,7 +611,7 @@ function getActivitiesByPlace() {
 
   activities.forEach(act => {
     const poblacio = act.poblacio.trim();
-    counts[place] = (counts[place] || 0) + 1;
+    counts[poblacio] = (counts[poblacio] || 0) + 1;
   });
 
   return counts;
@@ -662,3 +662,4 @@ document.getElementById("viewChart").addEventListener("click", () => {
   chartCanvas.style.display = "block";
   renderChart();
 });
+
