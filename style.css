@@ -22,6 +22,19 @@ html, body {
   background: white;
 }
 
+#chartContainer {
+  position: absolute;
+  top: 0;
+  left: 360px;
+  width: calc(100% - 360px);
+  height: 100vh;
+}
+
+#chartView {
+  width: 100%;
+  height: 100%;
+}
+
 .marker-cluster-small,
 .marker-cluster-medium,
 .marker-cluster-large {
@@ -258,7 +271,7 @@ html, body {
 /* --- LAYOUT MÓVIL --- */
 @media (max-width: 768px) {
 
-#chartView {
+#chartContainer {
   left: 0;
   width: 100%;
   height: 50vh;

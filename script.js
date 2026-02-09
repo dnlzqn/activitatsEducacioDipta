@@ -4,6 +4,17 @@
 
 Chart.register(ChartDataLabels);
 
+const chartContainer = document.getElementById("chartContainer");
+
+const resizeObserver = new ResizeObserver(() => {
+  if (chartInstance) {
+    chartInstance.resize();
+  }
+});
+
+resizeObserver.observe(chartContainer);
+
+
 
 // Colors per centre
 const centerColors = {
@@ -644,52 +655,52 @@ function renderChart() {
       }]
     },
     options: {
-  responsive: true,
-  maintainAspectRatio: false,
-  layout: {
-    padding: 20
-  },
-  plugins: {
-    legend: {
-      display: false
-    },
-    datalabels: {
-      anchor: "end",
-      align: "top",
-      color: "#111",
-      font: {
-        size: 12,
-        weight: "bold"
-      }
-    }
-  },
-  scales: {
-    x: {
-      ticks: {
-        color: "#111",
-        font: {
-          size: 12
+      responsive: true,
+      maintainAspectRatio: false,
+      layout: {
+        padding: 20
+      },
+      plugins: {
+        legend: {
+          display: false
+        },
+        datalabels: {
+          anchor: "end",
+          align: "top",
+          color: "#111",
+          font: {
+            size: 12,
+            weight: "bold"
+          }
         }
       },
-      grid: {
-        display: false
-      }
-    },
-    y: {
-      beginAtZero: true,
-      ticks: {
-        precision: 0,
-        color: "#111",
-        font: {
-          size: 12
+      scales: {
+        x: {
+          ticks: {
+            color: "#111",
+            font: {
+              size: 12
+            }
+          },
+          grid: {
+            display: false
+          }
+        },
+        y: {
+          beginAtZero: true,
+          ticks: {
+            precision: 0,
+            color: "#111",
+            font: {
+              size: 12
+            }
+          },
+          grid: {
+            color: "rgba(0,0,0,0.1)"
+          }
         }
-      },
-      grid: {
-        color: "rgba(0,0,0,0.1)"
       }
     }
-  }
-}
 
   });
 }
@@ -706,7 +717,9 @@ document.getElementById("viewMap").addEventListener("click", () => {
 
 document.getElementById("viewChart").addEventListener("click", () => {
   mapDiv.style.display = "none";
-  chartCanvas.style.display = "block";
+  chartContainer.style.display = "block";
   renderChart();
-});
 
+  // fuerza adaptación al espacio visible
+  setTimeout(() => chartInstance.resize(), 0);
+});
