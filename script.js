@@ -2,6 +2,9 @@
 // 1. CONFIGURACIÓ GENERAL
 // =====================================================
 
+Chart.register(ChartDataLabels);
+
+
 // Colors per centre
 const centerColors = {
   "EAD Tarragona": "#e63946",
@@ -642,7 +645,30 @@ function renderChart() {
     },
     options: {
       responsive: true,
-      maintainAspectRatio: false
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          display: false
+        },
+        datalabels: {
+          anchor: "end",
+          align: "top",
+          color: "#111",
+          font: {
+            weight: "bold",
+            size: 12
+          },
+          formatter: value => value
+        }
+      },
+      scales: {
+        y: {
+          beginAtZero: true,
+          ticks: {
+            precision: 0
+          }
+        }
+      }
     }
   });
 }
@@ -662,4 +688,3 @@ document.getElementById("viewChart").addEventListener("click", () => {
   chartCanvas.style.display = "block";
   renderChart();
 });
-

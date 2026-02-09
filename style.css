@@ -16,8 +16,8 @@ html, body {
 #chartView {
   position: absolute;
   top: 0;
-  left: 300px; /* ancho del panel */
-  width: calc(100% - 300px);
+  left: 360px;
+  width: calc(100% - 360px);
   height: 100vh;
   background: white;
 }
@@ -258,7 +258,13 @@ html, body {
 /* --- LAYOUT MÓVIL --- */
 @media (max-width: 768px) {
 
-  #centersBlock.collapsed {
+#chartView {
+  left: 0;
+  width: 100%;
+  height: 50vh;
+}
+
+#centersBlock.collapsed {
   display: none;
 }
 
