@@ -19,15 +19,22 @@
     <!-- Contenidor del mapa -->
     <div id="map" role="region" aria-label="Mapa d'activitats educatives">
       <div id="loading">
-      Carregant activitats…
+        Carregant activitats…
+      </div>
     </div>
-    </div>
+    <canvas id="chartView" style="display:none;"></canvas>
+
     
 
     <!-- Panell de filtres -->
     <aside id="centerPanel" class="panel" aria-label="Filtres de centres">
       <img id="logodipta" src="https://www.dipta.cat/estudiarartidisseny/img/DIPTA.svg">
       <h2>Activitats Educació DIPTA</h2>
+
+      <div class="view-switch">
+        <button id="viewMap" class="active">Mapa</button>
+        <button id="viewChart">Gràfica per poblacions</button>
+      </div>
 
       <div id="centerSelect" class="custom-select">
         <div class="select-display" data-value="all">
@@ -59,6 +66,8 @@
   <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
   <script src="https://unpkg.com/leaflet.heat/dist/leaflet-heat.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 
   <script src="script.js"></script>
 </body>
