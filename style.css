@@ -5,7 +5,7 @@
 html, body {
   margin: 0;
   height: 100%;
-  font-family: sans-serif;
+  font-family: "Nata Sans", sans-serif;
 }
 
 #map {
@@ -114,7 +114,7 @@ html, body {
 }
 
 .panel h2 {
-  margin: 0.2em 0 1em 0;
+  margin: 0.2em 0 .2em 0;
   font-size: 18px;
 }
 
@@ -124,6 +124,8 @@ html, body {
   display: inline-block;
   margin: 0;
 }
+
+
 
 .panel label {
   display: block;
@@ -154,13 +156,6 @@ html, body {
   border: 1px solid rgba(0,0,0,0.2);
   flex-shrink: 0;
 }
-
-
-
-
-
-
-
 
 .leaflet-control-container{
   display: none;
@@ -205,10 +200,46 @@ html, body {
   font-weight: 600;
 }
 
+.view-switch {
+  display: flex;
+  font-size: 14px;
+  gap: 6px;
+  margin-bottom: 6px;
+}
+
+.view-switch button {
+  flex: 1;
+  background: #f3f3f3;
+  border: 1px solid black;
+  color: black;
+  border-radius: 0;
+  padding: .3rem;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  cursor: pointer;
+  font-family: "Nata Sans", sans-serif;
+  font-weight: 600;
+
+}
+
+.view-switch button.active {
+  background: black;
+  color: white;
+  position: relative;
+}
+
+.view-switch button.active::before {
+  content: "✓";
+  position: absolute;
+  left: 8px;
+  font-weight: bold;
+}
+
 .select-display {
   background: #f3f3f3;
-  padding: 8px 10px;
-  border-radius: 6px;
+  padding: 4px;
+  border: 1px solid black;
   cursor: pointer;
   display: flex;
   justify-content: space-between;
@@ -231,7 +262,7 @@ html, body {
   left: 0;
   right: 0;
   background: white;
-  border-radius: 6px;
+  border: 1px solid black;
   box-shadow: 0 4px 12px rgba(0,0,0,0.15);
   overflow: hidden;
   display: none;
@@ -263,6 +294,7 @@ html, body {
   justify-content: center;
   font-size: 16px;
   z-index: 1000;
+  font-family: "Nata Sans", sans-serif;
 }
 
 

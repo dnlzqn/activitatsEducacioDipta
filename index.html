@@ -5,6 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mapa d'activitats Educació DIPTA</title>
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nata+Sans:wght@100..900&display=swap" rel="stylesheet">
+
   <!-- Estils de Leaflet -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
   <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css">
@@ -31,12 +35,8 @@
     <!-- Panell de filtres -->
     <aside id="centerPanel" class="panel" aria-label="Filtres de centres">
       <img id="logodipta" src="https://www.dipta.cat/estudiarartidisseny/img/DIPTA.svg">
-      <h2>Activitats Educació DIPTA</h2>
-
-      <div class="view-switch">
-        <button id="viewMap" class="active">Mapa</button>
-        <button id="viewChart">Gràfica per poblacions</button>
-      </div>
+      <h2>Educació DIPTA</h2>
+      <h3>Visualitzador d'activitats</h3>
 
       <div id="centerSelect" class="custom-select">
         <div class="select-display" data-value="all">
@@ -55,6 +55,12 @@
           <div class="select-option" data-value="CEE Sant Jordi">CEE Sant Jordi</div>
         </div>
       </div>
+
+      <div class="view-switch">
+        <button id="viewMap" class="active">Mapa</button>
+        <button id="viewChart">Gràfic</button>
+      </div>
+      
   </div>
 </details>
 <div class="activity-list">

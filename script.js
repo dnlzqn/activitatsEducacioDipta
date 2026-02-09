@@ -721,20 +721,27 @@ function renderChart() {
 }
 
 
-
 const mapDiv = document.getElementById("map");
-const chartCanvas = document.getElementById("chartView");
 
-document.getElementById("viewMap").addEventListener("click", () => {
+const btnMap = document.getElementById("viewMap");
+const btnChart = document.getElementById("viewChart");
+
+btnMap.addEventListener("click", () => {
   mapDiv.style.display = "block";
-  chartCanvas.style.display = "none";
+  chartContainer.style.display = "none";
+
+  btnMap.classList.add("active");
+  btnChart.classList.remove("active");
 });
 
-document.getElementById("viewChart").addEventListener("click", () => {
+btnChart.addEventListener("click", () => {
   mapDiv.style.display = "none";
   chartContainer.style.display = "block";
   renderChart();
 
   // fuerza adaptación al espacio visible
   setTimeout(() => chartInstance.resize(), 0);
+
+  btnChart.classList.add("active");
+  btnMap.classList.remove("active");
 });
