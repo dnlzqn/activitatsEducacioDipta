@@ -644,32 +644,53 @@ function renderChart() {
       }]
     },
     options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      plugins: {
-        legend: {
-          display: false
-        },
-        datalabels: {
-          anchor: "end",
-          align: "top",
-          color: "#111",
-          font: {
-            weight: "bold",
-            size: 12
-          },
-          formatter: value => value
-        }
-      },
-      scales: {
-        y: {
-          beginAtZero: true,
-          ticks: {
-            precision: 0
-          }
-        }
+  responsive: true,
+  maintainAspectRatio: false,
+  layout: {
+    padding: 20
+  },
+  plugins: {
+    legend: {
+      display: false
+    },
+    datalabels: {
+      anchor: "end",
+      align: "top",
+      color: "#111",
+      font: {
+        size: 12,
+        weight: "bold"
       }
     }
+  },
+  scales: {
+    x: {
+      ticks: {
+        color: "#111",
+        font: {
+          size: 12
+        }
+      },
+      grid: {
+        display: false
+      }
+    },
+    y: {
+      beginAtZero: true,
+      ticks: {
+        precision: 0,
+        color: "#111",
+        font: {
+          size: 12
+        }
+      },
+      grid: {
+        color: "rgba(0,0,0,0.1)"
+      }
+    }
+  }
+}
+
   });
 }
 
@@ -688,3 +709,4 @@ document.getElementById("viewChart").addEventListener("click", () => {
   chartCanvas.style.display = "block";
   renderChart();
 });
+
