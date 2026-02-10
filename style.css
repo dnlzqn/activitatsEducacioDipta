@@ -112,6 +112,7 @@ html, body {
   flex-direction: column;
   flex: 1;
   min-height: 0;
+  padding: 0.2rem 0.75rem;
 }
 
 #activityList {
@@ -351,3 +352,4 @@ html, body {
 
 
 }
+
