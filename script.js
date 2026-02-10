@@ -751,8 +751,11 @@ btnChart.addEventListener("click", () => {
   renderChart();
 
   // fuerza adaptación al espacio visible
-  setTimeout(() => chartInstance.resize(), 0);
-
+  setTimeout(() => {
+    chartInstance.resize();
+    chartInstance.update();
+  }, 100);
+  
   btnChart.classList.add("active");
   btnMap.classList.remove("active");
 });
