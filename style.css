@@ -81,16 +81,22 @@ html, body {
   width: 360px;
   height: 100vh;
   background: white;
-  padding: 15px;
   display: flex;
   flex-direction: column;
   box-shadow: 0 4px 12px rgba(0,0,0,0.25);
   z-index: 2000;
 }
 
-#logodipta {
+.cap {
+  background: #0083A9;
+  padding: 10px;
+  color: #e1e1e1;
+}
+
+.cap svg {
+  fill: #ffffff;
   height: 31px;
-  margin-bottom: .3rem;
+  margin: .3rem;
   align-self: flex-start;
 }
 
@@ -114,8 +120,9 @@ html, body {
 }
 
 .panel h2 {
-  margin: 0.2em 0 .2em 0;
+  margin: .2em 0 .5em 0.2em;
   font-size: 18px;
+  color: white;
 }
 
 
@@ -132,6 +139,7 @@ html, body {
   margin: 6px 0;
   font-size: 13px;
 }
+
 
 .center-item {
   display: flex;
@@ -210,7 +218,7 @@ html, body {
 .view-switch button {
   flex: 1;
   background: #e1e1e1;
-  color: black;
+  color: #0083a9;
   border-radius: 26px;
   padding: .3rem;
   text-align: center;
@@ -223,10 +231,15 @@ html, body {
   border: none;
 }
 
+.view-switch button:hover {
+  background: #c7c3c3
+}
+
 .view-switch button.active {
   background: #0083A9;
-  color: white;
+  color: #e1e1e1;
   position: relative;
+  border: 2px solid #e1e1e1;
 }
 
 .view-switch button.active::before {
@@ -237,7 +250,7 @@ html, body {
 }
 
 .select-display {
-    background: #0083A9;
+    background: #e1e1e1;
     padding: 0 14px;
     border-radius: 40px;
     cursor: pointer;
@@ -245,7 +258,7 @@ html, body {
     justify-content: space-between;
     align-items: center;
     height: 30px;
-    color: white;
+    color: #0083a9;
 }
 
 .select-display::after {
@@ -255,7 +268,7 @@ html, body {
 }
 
 .select-display:hover {
-  background: #007091;
+  background: #c7c3c3;
 }
 
 .select-options {
@@ -269,6 +282,7 @@ html, body {
   display: none;
   z-index: 2000;
   border-radius: 16px;
+  color: #0083a9;
 }
 
 .custom-select.open .select-options {
@@ -333,7 +347,6 @@ html, body {
     left: 0;
     width: 100%;
     height: 50vh;
-    padding: 12px;
   }
 
 
