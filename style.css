@@ -181,10 +181,6 @@ html, body {
   transition: background 0.15s ease;
 }
 
-.activity-item:first-of-type{
-  border-top: 1px solid #eee;
-}
-
 .activity-item strong {
   display: block;
   font-size: 12px;
@@ -352,4 +348,5 @@ html, body {
 
 
 }
+
 
