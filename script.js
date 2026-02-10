@@ -676,6 +676,10 @@ function renderChart() {
     options: {
       responsive: true,
       maintainAspectRatio: false,
+      animation: {
+        duration: 800,
+        easing: "easeOutQuart"
+      },
       layout: {
         padding: 20
       },
