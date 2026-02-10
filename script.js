@@ -745,6 +745,7 @@ btnMap.addEventListener("click", () => {
   btnChart.classList.remove("active");
 });
 
+/*
 btnChart.addEventListener("click", () => {
   mapDiv.style.display = "none";
   chartContainer.style.display = "block";
@@ -755,7 +756,21 @@ btnChart.addEventListener("click", () => {
     chartInstance.resize();
     chartInstance.update();
   }, 100);
-  
+
   btnChart.classList.add("active");
   btnMap.classList.remove("active");
 });
+*/
+btnChart.addEventListener("click", () => {
+  mapDiv.style.display = "none";
+  chartContainer.style.display = "block";
+
+  btnChart.classList.add("active");
+  btnMap.classList.remove("active");
+
+  // esperar a que el layout se estabilice
+  requestAnimationFrame(() => {
+    renderChart();
+  });
+});
+
