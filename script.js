@@ -229,18 +229,20 @@ async function loadCSV(path) {
 
 async function loadAllActivities() {
 
-  const [ecmtgn, ecmreus, eadtarragona, eadreus] = await Promise.all([
+  const [ecmtgn, ecmreus, eadtarragona, eadreus, ecmtortosa] = await Promise.all([
     loadCSV("https://docs.google.com/spreadsheets/d/e/2PACX-1vQM9_3hh4cmaap-esG8M69XanLMNLfjy8r8ifOTnR47ZcyFBLjLl7lT32q7wtML0aOZBe8vY6WvkY_v/pub?output=csv"),
     loadCSV("https://docs.google.com/spreadsheets/d/e/2PACX-1vSVcE7byD4WyMLNz9koF-JmCNH5c88mtN3eHZggjBqwlB4JAcbfPhyKVOx0skPCnHKYm0WgvNG87Qdv/pub?output=csv"),
     loadCSV("https://docs.google.com/spreadsheets/d/e/2PACX-1vTwPWgHKEvVZHbxF1o-0z3UAaUOd3Tnmn959AsYLxLifdlpn8e8z3uENnJtun0nwktqkhV-4eZe1nIy/pub?output=csv"),
-    loadCSV("https://docs.google.com/spreadsheets/d/e/2PACX-1vQASlY9Y8uyzLDimZp0PB6IJ53r-ohTIffRQ-gCpdEiP8-RRH-CBvuu8CS3yzA59JXtPL4hVQ9z9yyH/pub?output=csv")
+    loadCSV("https://docs.google.com/spreadsheets/d/e/2PACX-1vQASlY9Y8uyzLDimZp0PB6IJ53r-ohTIffRQ-gCpdEiP8-RRH-CBvuu8CS3yzA59JXtPL4hVQ9z9yyH/pub?output=csv"),
+    loadCSV("https://docs.google.com/spreadsheets/d/e/2PACX-1vRscIasfqMQgtnJRDSF_OiPcV8wnAS02zrLsENIwKjwlyYzmww6aSA4Fb48tLz1genW-HMTL3XmqJDk/pub?output=csv")
   ]);
 
   activities = [
     ...eadtarragona,
     ...eadreus,
     ...ecmtgn,
-    ...ecmreus
+    ...ecmreus,
+    ...ecmtortosa
   ];
 
 
@@ -773,4 +775,5 @@ btnChart.addEventListener("click", () => {
     renderChart();
   });
 });
+
 
