@@ -98,7 +98,6 @@ const placeCoordinates = {
   "El Vendrell": [41.22399,1.53465],
   "Tortosa": [40.8120, 0.5210],
   "Alcover": [41.26310, 1.17004],
-  "L'Espluga de Francolí": [41.39922,1.10138],
   "Igualada": [41.58128,1.61748],
   "Constantí"; [41.15769,1.21571]
 };
