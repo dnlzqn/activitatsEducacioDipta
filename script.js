@@ -91,8 +91,18 @@ const placeCoordinates = {
   "Tarragona":[41.1189, 1.2445],
   "Vic":[41.9301, 2.2549],
   "Port de Tarragona":[41.1054, 1.2458],
-  "Lleida": [41.61498, 0.62686]
+  "Lleida": [41.61498, 0.62686],
+  "Valls": [41.28271,1.24746],
+  "Salou": [41.07625,1.14365],
+  "Els Hostalets d'en Bas": [42.10249,2.44961],
+  "El Vendrell": [41.22399,1.53465],
+  "Tortosa": [40.8120, 0.5210],
+  "Alcover": [41.26310, 1.17004],
+  "L'Espluga de Francolí": [41.39922,1.10138],
+  "Igualada": [41.58128,1.61748],
+  "Constantí"; [41.15769,1.21571],
 };
+
 
   //41.11781265862017, 1.2556017190217974 conservatori tarragona
   //41.11808140668262, 1.2451156228780749 auditori diputació
