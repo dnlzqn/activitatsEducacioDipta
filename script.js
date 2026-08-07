@@ -1,6 +1,16 @@
 // =====================================================
 // 1. CONFIGURACIÓ GENERAL
 // =====================================================
+document.querySelectorAll(".select-option").forEach(option => {
+    const center = option.dataset.value;
+
+    const dot = document.createElement("span");
+    dot.className = "color-dot";
+    dot.style.background = centerColors[center] || "#666";
+
+    option.prepend(dot);
+});
+
 
 Chart.register(ChartDataLabels);
 
