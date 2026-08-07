@@ -217,7 +217,7 @@ async function loadCSV(path) {
     const center = (row["center"] || row["Centre"] || "").trim();
     const poblacio = (row["poblacio"] || "").trim();
 
-    let coords = placeCoordinates[place];
+    let coords = placeCoordinates[poblacio];
 
     if (!coords) {
       coords = centerCoordinates[center];
