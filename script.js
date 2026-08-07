@@ -1,16 +1,6 @@
 // =====================================================
 // 1. CONFIGURACIÓ GENERAL
 // =====================================================
-document.querySelectorAll(".select-option").forEach(option => {
-    const center = option.dataset.value;
-
-    const dot = document.createElement("span");
-    dot.className = "color-dot";
-    dot.style.background = centerColors[center] || "#666";
-
-    option.prepend(dot);
-});
-
 
 Chart.register(ChartDataLabels);
 
@@ -42,7 +32,15 @@ let activities = [];
 const allMarkers = [];
 let activeMarker = null;
 
+document.querySelectorAll(".select-option").forEach(option => {
+    const center = option.dataset.value;
 
+    const dot = document.createElement("span");
+    dot.className = "color-dot";
+    dot.style.background = centerColors[center] || "#666";
+
+    option.prepend(dot);
+});
 
 
 // =====================================================
@@ -629,9 +627,17 @@ selectOptions.forEach(option => {
 
     // texto del selector
     if (selectedCenter === "all") {
-      selectDisplay.textContent = "Tots els centres educatius";
+      selectDisplay.innerHTML = `
+        <span class="color-dot" style="background:#666"></span>
+        Tots els centres educatius
+      `;
     } else {
-      selectDisplay.textContent = "Centre educatiu: " + option.textContent.toUpperCase();
+      const color = centerColors[selectedCenter] || "#666";
+    
+      selectDisplay.innerHTML = `
+        <span class="color-dot" style="background:${color}"></span>
+        Centre educatiu: ${option.textContent}
+      `;
     }
 
     selectDisplay.dataset.value = selectedCenter;
