@@ -100,7 +100,7 @@ const placeCoordinates = {
   "Alcover": [41.26310, 1.17004],
   "L'Espluga de Francolí": [41.39922,1.10138],
   "Igualada": [41.58128,1.61748],
-  "Constantí"; [41.15769,1.21571],
+  "Constantí"; [41.15769,1.21571]
 };
 
 
