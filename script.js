@@ -454,20 +454,20 @@ function updateFilters() {
 // 11. TOGGLE MAPA DE CALOR
 // =====================================================
 
-heatToggle.checked = false;
+// heatToggle.checked = false;
 
-heatToggle.addEventListener("change", () => {
+// heatToggle.addEventListener("change", () => {
 
-  if (heatToggle.checked) {
-    map.removeLayer(markers);
-    map.addLayer(heatLayer);
+//   if (heatToggle.checked) {
+//     map.removeLayer(markers);
+//     map.addLayer(heatLayer);
 
-  } else {
-    map.removeLayer(heatLayer);
-    map.addLayer(markers);
-    updateFilters();
-  }
-});
+//   } else {
+//     map.removeLayer(heatLayer);
+//     map.addLayer(markers);
+//     updateFilters();
+//   }
+// });
 
 
 
