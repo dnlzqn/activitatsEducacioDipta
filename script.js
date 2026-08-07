@@ -101,7 +101,6 @@ const placeCoordinates = {
   "Igualada": [41.58128,1.61748],
   "Constantí": [41.15769,1.21571],
   "L'Espluga de Francolí": [41.4041,1.1038],
-  "Els Hostalets d'en Bas": [42.10235,2.45021],
   "El Prat de Llobregat":[41.33453,2.09341],
   "Barberà de la Conca": [41.41477,1.22807],
   "L'Hospitalet de Llobregat":[41.36223,2.09908],
@@ -213,7 +212,7 @@ async function loadCSV(path) {
 
   return parsed.data.map(row => {
     const title = row["title"] || row["Activitat"] || "";
-    const place = row["place"] || row["Lloc"] || "";
+    const place = (row["place"] || row["Lloc"] || "").trim();
     const date = row["date"] || row["Data"] || "";
     const center = (row["center"] || row["Centre"] || "").trim();
     const poblacio = (row["poblacio"] || "").trim();
@@ -455,20 +454,20 @@ function updateFilters() {
 // 11. TOGGLE MAPA DE CALOR
 // =====================================================
 
-// heatToggle.checked = false;
+heatToggle.checked = false;
 
-// heatToggle.addEventListener("change", () => {
+heatToggle.addEventListener("change", () => {
 
-//   if (heatToggle.checked) {
-//     map.removeLayer(markers);
-//     map.addLayer(heatLayer);
+  if (heatToggle.checked) {
+    map.removeLayer(markers);
+    map.addLayer(heatLayer);
 
-//   } else {
-//     map.removeLayer(heatLayer);
-//     map.addLayer(markers);
-//     updateFilters();
-//   }
-// });
+  } else {
+    map.removeLayer(heatLayer);
+    map.addLayer(markers);
+    updateFilters();
+  }
+});
 
 
 
