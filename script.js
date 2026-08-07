@@ -90,7 +90,8 @@ const placeCoordinates = {
   "Sant Joan de Mediona":[41.4762, 1.6123],
   "Tarragona":[41.1189, 1.2445],
   "Vic":[41.9301, 2.2549],
-  "Port de Tarragona":[41.1054, 1.2458]
+  "Port de Tarragona":[41.1054, 1.2458],
+  "Lleida": [41.61498, 0.62686]
 };
 
   //41.11781265862017, 1.2556017190217974 conservatori tarragona
