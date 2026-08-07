@@ -103,7 +103,12 @@ const placeCoordinates = {
   "L'Espluga de Francolí": [41.4041,1.1038],
   "Els Hostalets d'en Bas": [42.10235,2.45021],
   "El Prat de Llobregat":[41.33453,2.09341],
-  "Barberà de la Conca": [41.41477,1.22807]
+  "Barberà de la Conca": [41.41477,1.22807],
+  "L'Hospitalet de Llobregat":[41.36223,2.09908],
+  "València":[39.4817,-0.3770],
+  "Montblanc": [41.3768,1.1632],
+  "Montferri": [41.26746,1.36625],
+  "Escaladei": [41.24947,0.81084]
 };
 
 
