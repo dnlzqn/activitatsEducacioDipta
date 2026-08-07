@@ -100,7 +100,10 @@ const placeCoordinates = {
   "Alcover": [41.26310, 1.17004],
   "Igualada": [41.58128,1.61748],
   "Constantí": [41.15769,1.21571],
-  "L'Espluga de Francolí": [41.4041,1.1038]
+  "L'Espluga de Francolí": [41.4041,1.1038],
+  "Els Hostalets d'en Bas": [42.10235,2.45021],
+  "El Prat de Llobregat":[41.33453,2.09341],
+  "Barberà de la Conca": [41.41477,1.22807]
 };
 
 
