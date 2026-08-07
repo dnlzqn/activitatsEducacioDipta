@@ -115,7 +115,12 @@ const placeCoordinates = {
   "València":[39.4817,-0.3770],
   "Montblanc": [41.3768,1.1632],
   "Montferri": [41.26746,1.36625],
-  "Escaladei": [41.24947,0.81084]
+  "Escaladei": [41.24947,0.81084],
+  "Vilallonga del Camp": [41.20971,1.20704],
+  "Moncada":[39.54558,-0.39379],
+  "Mont-roig del Camp":[41.0923,0.9606],
+  "Bilbao":[43.26682,-2.93627],
+  "L'Ametlla de Mar":[40.8896,0.8027]
 };
 
 
