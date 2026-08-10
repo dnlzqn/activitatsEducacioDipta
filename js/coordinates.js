@@ -14,6 +14,8 @@ const placeCoordinates = {
   "EAD Tarragona": [41.1189, 1.2445],
   "EAD Reus": [41.1537, 1.1068],
   "CEE Sant Rafael": [41.128037847775666, 1.2425225973129275],
+  "CEE Sant Jordi": [41.82722, 0.50760],
+  "CEE Alba": [41.169873, 1.086684]
 
   // --------------------------------------------------
   // Tarragona
@@ -109,7 +111,8 @@ const placeCoordinates = {
   "Ivars d'Urgell":[41.68365,0.98585],
   "El Pla de Santa Maria":[41.36855,1.29055],
   "Riudoms":[41.14128,1.05297],
-  "Mont-roig del Camp":[41.0897,0.9634]
+  "Mont-roig del Camp":[41.0897,0.9634],
+  "Móra d'Ebre":[41.08876,0.64064]
   
 
 };
