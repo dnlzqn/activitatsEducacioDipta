@@ -112,9 +112,12 @@ const placeCoordinates = {
   "El Pla de Santa Maria":[41.36855,1.29055],
   "Riudoms":[41.14128,1.05297],
   "Mont-roig del Camp":[41.0897,0.9634],
-  "Móra d'Ebre":[41.08876,0.64064]
-  
-
+  "Móra d'Ebre":[41.08876,0.64064],
+  "Coma-ruga":[41.18262,1.52311],
+  "Cambrils":[41.07091,1.06585],
+  "Vidreres":[41.79255,2.77834],
+  "L'Aldea":[40.7454,0.6170],
+  "Tivissa":[41.0423,0.7357]
 };
 
 
