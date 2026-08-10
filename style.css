@@ -366,4 +366,46 @@ html, body {
 
 }
 
+.search-box{
+    margin:.5rem 0;
+}
 
+.search-box input{
+
+    width:100%;
+    height:30px;
+
+    border:none;
+
+    border-radius:30px;
+
+    padding:0 14px;
+
+    background:#e1e1e1;
+
+    color:#0083A9;
+
+    font-size:14px;
+
+    font-family:"Nata Sans",sans-serif;
+
+    outline:none;
+
+    transition:.2s;
+
+}
+
+.search-box input::placeholder{
+
+    color:#0083A9;
+    opacity:.8;
+
+}
+
+.search-box input:focus{
+
+    background:white;
+
+    box-shadow:0 0 0 2px rgba(255,255,255,.5);
+
+}
