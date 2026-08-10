@@ -14,7 +14,7 @@ const placeCoordinates = {
   "EAD Tarragona": [41.1189, 1.2445],
   "EAD Reus": [41.1537, 1.1068],
   "CEE Sant Rafael": [41.128037847775666, 1.2425225973129275],
-  "CEE Sant Jordi": [41.82722, 0.50760],
+  "CEE Sant Jordi": [40.82699, 0.50747],
   "CEE Alba": [41.169873, 1.086684],
 
   // --------------------------------------------------
@@ -136,6 +136,6 @@ const centerCoordinates = {
   "EAD Tarragona": [41.1189, 1.2445],
   "EAD Reus": [41.1537, 1.1068],
   "CEE Sant Rafael": [41.128037847775666, 1.2425225973129275],
-  "CEE Sant Jordi": [41.82722, 0.50760],
+  "CEE Sant Jordi": [40.82699, 0.50747],
   "CEE Alba": [41.169873, 1.086684]
 };
