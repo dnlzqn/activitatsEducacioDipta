@@ -34,23 +34,23 @@ function applyFilters() {
 
         if (filters.search) {
 
-            const search = normalizeText(filters.search);
+            const haystack = normalizeText(
 
-            const haystack = [
+    [
 
-                activity.title,
+        activity.title,
 
-                activity.place,
+        activity.place,
 
-                activity.poblacio,
+        activity.poblacio,
 
-                activity.center
+        activity.center
 
-            ]
+    ].join(" ")
 
-            .map(normalizeText)
+);
 
-            .join(" ");
+const search = normalizeText(filters.search);
 
 
             if (!haystack.includes(search)) {
