@@ -103,7 +103,14 @@ const placeCoordinates = {
   "València": [39.4817, -0.3770],
   "Moncada": [39.54558, -0.39379],
   "Bilbao": [43.26682, -2.93627],
-  "L'Ametlla de Mar": [40.8896, 0.8027]
+  "L'Ametlla de Mar": [40.8896, 0.8027],
+  "La Canonja":[41.12261,1.18146],
+  "El Catllar":[41.17889,1.132471],
+  "Ivars d'Urgell":[41.68365,0.98585],
+  "El Pla de Santa Maria":[41.36855,1.29055],
+  "Riudoms":[41.14128,1.05297],
+  "Mont-roig del Camp":[41.0897,0.9634]
+  
 
 };
 
