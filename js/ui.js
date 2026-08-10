@@ -25,6 +25,8 @@ const ui = {
 
     map: document.getElementById("map"),
 
+    searchInput: document.getElementById("searchInput"),
+
     chartContainer: document.getElementById("chartContainer")
 
 };
@@ -143,15 +145,19 @@ function renderActivityList(){
 
     ui.activityList.innerHTML = "";
 
+    const activities = sortActivitiesByDate(state.filteredActivities);
 
-    const activities =
+    if(activities.length===0){
 
-        sortActivitiesByDate(
+        ui.activityList.innerHTML = `
+            <div class="activity-item">
+                No s'han trobat activitats.
+            </div>
+        `;
 
-            state.filteredActivities
+        return;
 
-        );
-
+    }
 
     activities.forEach(activity=>{
 
@@ -159,54 +165,25 @@ function renderActivityList(){
 
         div.className = "activity-item";
 
+        div.dataset.id = activity.id || "";
 
         div.innerHTML = `
-
-            <strong>
-
-                ${activity.title}
-
-            </strong>
-
-            <span>
-
-                ${activity.place}
-
-            </span>
-
-            <br>
-
-            <span>
-
-                ${activity.date}
-                ·
-                ${activity.center}
-
-            </span>
-
+            <strong>${activity.title}</strong>
+            <span>${activity.place}</span><br>
+            <span>${activity.date} · ${activity.center}</span>
         `;
-
 
         div.addEventListener("click",()=>{
 
             document
-
                 .querySelectorAll(".activity-item.active")
-
-                .forEach(item=>{
-
-                    item.classList.remove("active");
-
-                });
-
+                .forEach(item=>item.classList.remove("active"));
 
             div.classList.add("active");
-
 
             selectMarker(activity);
 
         });
-
 
         ui.activityList.appendChild(div);
 
@@ -214,7 +191,37 @@ function renderActivityList(){
 
 }
 
+// =====================================================
+// MARCAR ACTIVITAT ACTIVA
+// =====================================================
 
+function setActiveActivity(activity){
+
+    document
+        .querySelectorAll(".activity-item.active")
+        .forEach(item=>item.classList.remove("active"));
+
+    const items = ui.activityList.querySelectorAll(".activity-item");
+
+    items.forEach(item=>{
+
+        if(item.dataset.id===(activity.id || "")){
+
+            item.classList.add("active");
+
+            item.scrollIntoView({
+
+                block:"nearest",
+
+                behavior:"smooth"
+
+            });
+
+        }
+
+    });
+
+}
 
 
 // =====================================================
@@ -280,57 +287,6 @@ function showChart(){
 
 
 // =====================================================
-// COMPTADOR PER CENTRES
-// =====================================================
-
-function updateCenterCounts(){
-
-    const counts =
-
-        countBy(
-
-            state.activities,
-
-            "center"
-
-        );
-
-
-    document
-
-        .querySelectorAll(".center-item")
-
-        .forEach(item=>{
-
-            const checkbox =
-
-                item.querySelector("input");
-
-
-            if(!checkbox) return;
-
-
-            const count =
-
-                item.querySelector(".center-count");
-
-
-            if(count){
-
-                count.textContent =
-
-                    `(${counts[checkbox.value] || 0})`;
-
-            }
-
-        });
-
-}
-
-
-
-
-// =====================================================
 // INICIALITZACIÓ
 // =====================================================
 
@@ -338,8 +294,28 @@ function initUI(){
 
     initCenterSelector();
 
+    initSearch();
+
     initViewButtons();
 
     updateCenterSelector();
+
+}
+
+// =====================================================
+// CERCA
+// =====================================================
+
+function initSearch(){
+
+    if(!ui.searchInput) return;
+
+    ui.searchInput.addEventListener("input",(e)=>{
+
+        filters.search = e.target.value;
+
+        refreshUI();
+
+    });
 
 }
