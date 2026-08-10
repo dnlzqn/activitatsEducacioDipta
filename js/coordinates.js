@@ -80,7 +80,6 @@ const placeCoordinates = {
   "Valls": [41.28271, 1.24746],
   "Salou": [41.07625, 1.14365],
   "Montblanc": [41.3768, 1.1632],
-  "Mont-roig del Camp": [41.0923, 0.9606],
   "Constantí": [41.15769, 1.21571],
   "L'Espluga de Francolí": [41.4041, 1.1038],
   "Els Pallaresos": [41.1746, 1.2726],
@@ -136,6 +135,7 @@ const centerCoordinates = {
   "ECM Tortosa": [40.8120, 0.5210],
   "EAD Tarragona": [41.1189, 1.2445],
   "EAD Reus": [41.1537, 1.1068],
-  "CEE Sant Rafael": [41.128037847775666, 1.2425225973129275]
-
+  "CEE Sant Rafael": [41.128037847775666, 1.2425225973129275],
+  "CEE Sant Jordi": [41.82722, 0.50760],
+  "CEE Alba": [41.169873, 1.086684]
 };
