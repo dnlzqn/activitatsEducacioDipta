@@ -117,7 +117,9 @@ const placeCoordinates = {
   "Cambrils":[41.07091,1.06585],
   "Vidreres":[41.79255,2.77834],
   "L'Aldea":[40.7454,0.6170],
-  "Tivissa":[41.0423,0.7357]
+  "Tivissa":[41.0423,0.7357],
+  "Amposta":[40.7144,0.5806],
+  "Banyeres del Penedès":[41.27594,1.58134]
 };
 
 
