@@ -37,6 +37,16 @@ const dataSources = [
   {
     center: "CEE Alba",
     url: "https://docs.google.com/spreadsheets/d/e/2PACX-1vQOtzRc9F8vLohjUxWAH6b3LCow9VJ-A3b7_KNCGgwTFDTNKMxrmcvXbcxq4T7bv3p18thZfGjyAp0r/pub?output=csv"
+  },
+
+  {
+    center: "CEE Sant Rafael",
+    url: "https://docs.google.com/spreadsheets/d/e/2PACX-1vRedoyCuVT3KTTSUcR7T3H9rmgBmqwrixepWPn21Gx8dT1-fn1ypdfg-ffCwGrIznXgbw6-wwmH26At/pub?output=csv"
+  },
+
+  {
+    center: "CEE Alba",
+    url: "https://docs.google.com/spreadsheets/d/e/2PACX-1vQOtzRc9F8vLohjUxWAH6b3LCow9VJ-A3b7_KNCGgwTFDTNKMxrmcvXbcxq4T7bv3p18thZfGjyAp0r/pub?output=csv"
   }
 
 ];
