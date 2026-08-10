@@ -119,7 +119,8 @@ const placeCoordinates = {
   "L'Aldea":[40.7454,0.6170],
   "Tivissa":[41.0423,0.7357],
   "Amposta":[40.7144,0.5806],
-  "Banyeres del Penedès":[41.27594,1.58134]
+  "Banyeres del Penedès":[41.27594,1.58134],
+  "Calafell":[41.20433,1.56864]
 };
 
 
