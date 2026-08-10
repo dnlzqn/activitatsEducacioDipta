@@ -40,6 +40,8 @@ function createMarkerLayer() {
 
     return L.markerClusterGroup({
 
+        disableClusteringAtZoom: 9,
+
         iconCreateFunction(cluster) {
 
             const children = cluster.getAllChildMarkers();
