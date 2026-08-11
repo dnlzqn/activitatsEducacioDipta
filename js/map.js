@@ -20,6 +20,54 @@ function createMap() {
 
     refs.markerLayer = createMarkerLayer();
 
+    refs.map.on("zoomend", () => {
+
+    if (refs.map.getZoom() < 10) return;
+
+    const clusters = new Set();
+
+    state.markers.forEach(marker => {
+
+        const parent = refs.markerLayer.getVisibleParent(marker);
+
+        if (
+            parent &&
+            typeof parent.getAllChildMarkers === "function"
+        ) {
+            clusters.add(parent);
+        }
+
+    });
+
+    clusters.forEach(cluster => {
+
+        const children = cluster.getAllChildMarkers();
+
+        if (children.length < 2) return;
+
+        const first = children[0].getLatLng();
+
+        const sameLocation = children.every(marker => {
+
+            const latLng = marker.getLatLng();
+
+            return (
+                latLng.lat === first.lat &&
+                latLng.lng === first.lng
+            );
+
+        });
+
+        if (sameLocation) {
+
+            cluster.spiderfy();
+
+        }
+
+    });
+
+});
+
     refs.map.addLayer(refs.markerLayer);
 
     refs.heatLayer = L.heatLayer([], {
@@ -40,7 +88,11 @@ function createMarkerLayer() {
 
     return L.markerClusterGroup({
 
-        disableClusteringAtZoom: 9,
+        maxClusterRadius: 40,
+        
+        spiderfyOnMaxZoom: true,
+        spiderfyDistanceMultiplier: 1.5,
+        
 
         iconCreateFunction(cluster) {
 
